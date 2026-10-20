@@ -1,20 +1,650 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Intelligence Hippique X1000</title>
-<style>body{font-family:Arial,sans-serif;background:#101827;color:white;text-align:center;padding:25px}h1{color:#ffd166}.card{background:#202d43;padding:20px;margin:15px 0;border-radius:12px}</style>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101827">
+<title>HIPPOFUSION X1000 | M1–M5</title>
+<style>
+:root {
+  color-scheme: dark;
+  --bg:#0b1220;
+  --panel:#17243a;
+  --panel2:#202f49;
+  --text:#f2f6ff;
+  --muted:#b3c3da;
+  --gold:#ffd166;
+  --line:#354760;
+}
+* {box-sizing:border-box}
+body {
+  margin:0;
+  font-family:system-ui,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+header {
+  background:linear-gradient(135deg,#17294b,#101827);
+  padding:30px 18px;
+  text-align:center;
+  border-bottom:1px solid var(--line);
+}
+h1 {font-size:clamp(1.6rem,5vw,2.5rem);margin:0 0 8px}
+h2 {font-size:1.22rem;color:var(--gold)}
+p {line-height:1.55}
+.subtitle,.muted,.status {color:var(--muted)}
+.wrap {max-width:1100px;margin:auto;padding:18px}
+.panel {
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:18px;
+  margin:18px 0;
+}
+.topline {
+  display:flex;
+  gap:12px;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+.chip {
+  display:inline-block;
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:6px 10px;
+  color:var(--muted);
+  font-size:.85rem;
+}
+.engines {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(175px,1fr));
+  gap:10px;
+}
+.engine {
+  background:var(--panel2);
+  border-radius:12px;
+  padding:14px;
+  border-left:5px solid var(--accent);
+}
+.engine strong {display:block;margin-bottom:5px}
+.engine small {color:var(--muted)}
+button,input {font:inherit}
+button {
+  background:#e5b74e;
+  color:#151515;
+  border:0;
+  border-radius:10px;
+  padding:11px 16px;
+  font-weight:700;
+  cursor:pointer;
+}
+button.secondary {
+  background:#263e60;
+  color:white;
+  border:1px solid #52729d;
+}
+button:focus-visible,input:focus-visible {
+  outline:3px solid #ffd166;
+  outline-offset:2px;
+}
+.controls {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+}
+.controls input {
+  background:#0b1629;
+  color:white;
+  border:1px solid #526783;
+  border-radius:9px;
+  padding:10px;
+}
+.tablewrap {
+  overflow-x:auto;
+  border-radius:10px;
+  border:1px solid var(--line);
+}
+table {
+  width:100%;
+  border-collapse:collapse;
+  min-width:850px;
+  font-size:.91rem;
+}
+th,td {
+  padding:12px 10px;
+  text-align:left;
+  border-bottom:1px solid var(--line);
+  vertical-align:top;
+}
+th {
+  background:#263a58;
+  color:var(--gold);
+  white-space:nowrap;
+}
+.course {
+  background:#20304b;
+  border:1px solid #3b5271;
+  border-radius:12px;
+  padding:14px;
+  margin:12px 0;
+}
+.course h3 {margin:0 0 7px}
+.course p {margin:6px 0;color:var(--muted)}
+.empty {
+  padding:24px;
+  text-align:center;
+  color:var(--muted);
+}
+.notice {
+  background:#1f314a;
+  border-left:4px solid var(--gold);
+  padding:12px;
+  border-radius:8px;
+}
+summary {cursor:pointer;color:var(--gold)}
+code {overflow-wrap:anywhere}
+footer {
+  text-align:center;
+  color:var(--muted);
+  padding:25px;
+  font-size:.85rem;
+}
+@media(max-width:600px) {
+  .wrap {padding:10px}
+  .panel {padding:14px}
+  .controls>* {width:100%}
+}
+</style>
 </head>
 <body>
-<h1>🇸🇳🧠🔥 Intelligence Hippique X1000</h1>
-<h2>Moteurs M1 à M5</h2>
-<p>Chaque course a ses propres réalités.</p>
-<div class="card">🔵 M1 — Statistiques et performances</div>
-<div class="card">🟢 M2 — Forme et aptitudes</div>
-<div class="card">🟣 M3 — Favoris et outsiders</div>
-<div class="card">🟠 M4 — Simulations et scénarios</div>
-<div class="card">🔴 M5 — Risques et coûts</div>
-<p>Analyses hippiques des courses françaises PMU</p>
+
+<header>
+<h1>🇸🇳🧠🔥 HIPPOFUSION X1000</h1>
+<p class="subtitle">
+Intelligence hippique autonome • Moteurs M1 à M5
+</p>
+<p>
+Chaque course a ses propres réalités.
+Chaque cheval mérite une étude individuelle.
+</p>
+<span class="chip" id="clock">Heure de Paris : —</span>
+</header>
+
+<main class="wrap">
+
+<section class="panel">
+<div class="topline">
+<h2>📡 État du système</h2>
+<span id="connection" class="chip">
+Données non chargées
+</span>
+</div>
+<p id="summary" class="muted" aria-live="polite">
+En attente des fichiers d'analyse publiés.
+</p>
+<div class="controls">
+<button id="refresh" type="button">
+↻ Actualiser les données
+</button>
+<button id="demo" type="button" class="secondary">
+Voir la structure du tableau
+</button>
+</div>
+<p class="status" id="updated"></p>
+</section>
+
+<section class="panel">
+<h2>🧠 Les cinq moteurs indépendants</h2>
+<div class="engines">
+<div class="engine" style="--accent:#3b82f6">
+<strong>🔵 M1</strong>
+<small>Statistiques et performances</small>
+</div>
+<div class="engine" style="--accent:#22c55e">
+<strong>🟢 M2</strong>
+<small>Forme et aptitudes</small>
+</div>
+<div class="engine" style="--accent:#a855f7">
+<strong>🟣 M3</strong>
+<small>Favoris et outsiders</small>
+</div>
+<div class="engine" style="--accent:#f59e0b">
+<strong>🟠 M4</strong>
+<small>Scénarios et déroulement</small>
+</div>
+<div class="engine" style="--accent:#ef4444">
+<strong>🔴 M5</strong>
+<small>Risques et coûts</small>
+</div>
+</div>
+<p class="muted">
+Chaque moteur doit analyser les réalités de la course
+et justifier ses choix à partir de données réelles.
+</p>
+</section>
+
+<section class="panel">
+<div class="topline">
+<h2>🏇 Courses françaises PMU</h2>
+<span id="count" class="chip">0 course</span>
+</div>
+<div class="controls">
+<label for="date">Date de course (Paris)</label>
+<input id="date" type="date">
+<button id="today" type="button" class="secondary">
+Aujourd'hui
+</button>
+</div>
+<div id="courses" class="empty" aria-live="polite">
+Aucune course vérifiée disponible.
+</div>
+</section>
+
+<section class="panel">
+<h2>🏆 Tableau officiel M1–M5</h2>
+<p id="selection" class="muted">
+Sélectionnez une course.
+</p>
+<div class="tablewrap">
+<table>
+<thead>
+<tr>
+<th>Moteur</th>
+<th>🥇 Gagnant espéré</th>
+<th>🥈 Meilleur placé</th>
+<th>Ordre d'arrivée espéré</th>
+<th>🎯 Pari retenu</th>
+<th>Qualification</th>
+<th>Validation</th>
+<th>Heure Paris</th>
+</tr>
+</thead>
+<tbody id="predictions">
+<tr>
+<td colspan="8" class="empty">
+Aucun pronostic disponible.
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="status">
+Les pronostics FIGÉS doivent être enregistrés avant
+le départ et conservés sans modification rétroactive.
+</p>
+</section>
+
+<section class="panel">
+<h2>🔒 Historique des FIGÉS et audits</h2>
+<div id="history" class="empty">
+Aucun historique vérifié disponible.
+</div>
+</section>
+
+<section class="panel">
+<h2>ℹ️ Transparence des données</h2>
+<div class="notice">
+Cette interface affiche les données JSON publiées.
+Elle ne calcule pas les pronostics et ne garantit
+aucun gain. Toute information absente reste
+indisponible.
+</div>
+<details>
+<summary>Configuration des données JSON</summary>
+<p>
+Le fichier attendu est
+<code>data/latest.json</code>.
+Il contient les champs
+<code>generated_at</code>,
+<code>courses</code> et
+<code>history</code>.
+</p>
+<p>
+Chaque course peut fournir son identifiant, sa date,
+son hippodrome, sa réunion, son numéro, son heure,
+ses partants, sa qualification et les analyses
+des moteurs M1 à M5.
+</p>
+</details>
+</section>
+
+</main>
+
+<footer>
+🇸🇳 HIPPOFUSION X1000 • M1–M5 • GitHub Pages
+</footer>
+
+<script>
+"use strict";
+
+const $ = id => document.getElementById(id);
+
+const engineNames = ["M1","M2","M3","M4","M5"];
+
+let state = {
+  courses:[],
+  history:[],
+  selected:null
+};
+
+function parisDate() {
+  return new Intl.DateTimeFormat("en-CA",{
+    timeZone:"Europe/Paris",
+    year:"numeric",
+    month:"2-digit",
+    day:"2-digit"
+  }).format(new Date());
+}
+
+function parisClock() {
+  return new Intl.DateTimeFormat("fr-FR",{
+    timeZone:"Europe/Paris",
+    dateStyle:"medium",
+    timeStyle:"medium"
+  }).format(new Date());
+}
+
+function value(v) {
+  if(v === undefined || v === null || v === "") {
+    return "Non disponible";
+  }
+  return String(v);
+}
+
+function text(tag,content,cls) {
+  const e = document.createElement(tag);
+  e.textContent = value(content);
+  if(cls) e.className = cls;
+  return e;
+}
+
+function courseId(c,i) {
+  return String(
+    c.id ??
+    `${c.date ?? ""}-${c.reunion ?? ""}-${c.course ?? i}`
+  );
+}
+
+function setStatus(status,message) {
+  $("connection").textContent = status;
+  $("summary").textContent = message;
+}
+
+function renderCourses() {
+  const root = $("courses");
+  root.replaceChildren();
+
+  const chosen = state.courses.filter(
+    c => c.date === $("date").value
+  );
+
+  $("count").textContent = chosen.length + " course(s)";
+
+  if(!chosen.length) {
+    root.append(
+      text("p","Aucune course publiée pour cette date.","muted")
+    );
+    state.selected = null;
+    renderPredictions();
+    return;
+  }
+
+  chosen.forEach((c,i) => {
+    const card = document.createElement("article");
+    card.className = "course";
+
+    card.append(text(
+      "h3",
+      `${value(c.reunion)} / ${value(c.course)} — ${value(c.hippodrome)}`
+    ));
+
+    card.append(text(
+      "p",
+      `Départ (Paris) : ${value(c.heure_paris)} • Partants : ${value(c.partants)} • Non-partants : ${value(c.non_partants)}`
+    ));
+
+    card.append(text(
+      "p",
+      `Qualification : ${value(c.qualification)} • Validation : ${value(c.validation)} • FIGÉ : ${c.fige === true ? "Oui" : c.fige === false ? "Non" : "Non renseigné"}`
+    ));
+
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "secondary";
+    btn.textContent = "Voir les moteurs";
+
+    btn.addEventListener("click",() => {
+      state.selected = courseId(c,i);
+      renderPredictions();
+      $("selection").scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+      });
+    });
+
+    card.append(btn);
+    root.append(card);
+  });
+
+  if(!chosen.some(
+    (c,i) => courseId(c,i) === state.selected
+  )) {
+    state.selected = courseId(chosen[0],0);
+  }
+
+  renderPredictions();
+}
+
+function renderPredictions() {
+  const tbody = $("predictions");
+  tbody.replaceChildren();
+
+  const c = state.courses.find(
+    (x,i) =>
+      courseId(x,i) === state.selected &&
+      x.date === $("date").value
+  );
+
+  if(!c) {
+    $("selection").textContent = "Aucune course sélectionnée.";
+    const tr = document.createElement("tr");
+    const td = text("td","Aucun pronostic disponible.","empty");
+    td.colSpan = 8;
+    tr.append(td);
+    tbody.append(tr);
+    return;
+  }
+
+  $("selection").textContent =
+    `${value(c.hippodrome)} • ${value(c.reunion)} / ${value(c.course)} • ${value(c.heure_paris)} (Paris)`;
+
+  engineNames.forEach(name => {
+    const m = c.moteurs && typeof c.moteurs === "object"
+      ? c.moteurs[name]
+      : null;
+
+    const tr = document.createElement("tr");
+
+    const vals = [
+      name,
+      m?.gagnant,
+      m?.place,
+      Array.isArray(m?.ordre)
+        ? m.ordre.join("-")
+        : m?.ordre,
+      m?.pari,
+      m?.qualification ?? c.qualification,
+      m?.validation ?? c.validation,
+      m?.heure_paris ?? c.heure_paris
+    ];
+
+    vals.forEach(v => {
+      tr.append(text("td",v));
+    });
+
+    tbody.append(tr);
+  });
+
+  if(Array.isArray(c.analyses) && c.analyses.length) {
+    const tr = document.createElement("tr");
+    const td = document.createElement("td");
+    td.colSpan = 8;
+
+    td.append(text("strong","Analyses : "));
+
+    td.append(document.createTextNode(
+      c.analyses.map(a =>
+        typeof a === "string" ? a : JSON.stringify(a)
+      ).join(" • ")
+    ));
+
+    tr.append(td);
+    tbody.append(tr);
+  }
+}
+
+function renderHistory() {
+  const root = $("history");
+  root.replaceChildren();
+
+  if(!state.history.length) {
+    root.append(text(
+      "p",
+      "Aucun historique FIGÉ publié.",
+      "muted"
+    ));
+    return;
+  }
+
+  state.history.forEach(h => {
+    const article = document.createElement("article");
+    article.className = "course";
+
+    article.append(text(
+      "h3",
+      `${value(h.date)} — ${value(h.hippodrome)} — ${value(h.course)}`
+    ));
+
+    article.append(text(
+      "p",
+      `FIGÉ à : ${value(h.fige_at)} • Statut : ${value(h.statut)} • Arrivée officielle : ${
+        Array.isArray(h.arrivee)
+          ? h.arrivee.join("-")
+          : value(h.arrivee)
+      }`
+    ));
+
+    if(h.audit) {
+      article.append(text("p",`Audit : ${value(h.audit)}`));
+    }
+
+    root.append(article);
+  });
+}
+
+async function load() {
+  setStatus(
+    "Chargement…",
+    "Lecture du fichier data/latest.json"
+  );
+
+  try {
+    const response = await fetch(
+      "./data/latest.json?t=" + Date.now(),
+      {cache:"no-store"}
+    );
+
+    if(!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    const json = await response.json();
+
+    if(
+      !json ||
+      !Array.isArray(json.courses) ||
+      !Array.isArray(json.history)
+    ) {
+      throw new Error("Format JSON incompatible");
+    }
+
+    state.courses = json.courses.filter(
+      c => c && typeof c === "object"
+    );
+
+    state.history = json.history.filter(
+      h => h && typeof h === "object"
+    );
+
+    setStatus(
+      "Données chargées",
+      `${state.courses.length} course(s) publiée(s). La présence de données ne garantit pas leur vérification.`
+    );
+
+    $("updated").textContent =
+      "Dernière génération déclarée : " +
+      value(json.generated_at);
+
+    renderCourses();
+    renderHistory();
+
+  } catch(err) {
+    state = {
+      courses:[],
+      history:[],
+      selected:null
+    };
+
+    setStatus(
+      "Données indisponibles",
+      "Impossible de charger les données publiées. Vérifiez data/latest.json."
+    );
+
+    $("updated").textContent =
+      "Détail technique : " + err.message;
+
+    renderCourses();
+    renderHistory();
+  }
+}
+
+$("refresh").addEventListener("click",load);
+
+$("date").addEventListener("change",() => {
+  state.selected = null;
+  renderCourses();
+});
+
+$("today").addEventListener("click",() => {
+  $("date").value = parisDate();
+  state.selected = null;
+  renderCourses();
+});
+
+$("demo").addEventListener("click",() => {
+  $("selection").textContent =
+    "Structure du tableau : aucune donnée simulée.";
+
+  $("selection").scrollIntoView({
+    behavior:"smooth",
+    block:"center"
+  });
+});
+
+$("date").value = parisDate();
+
+$("clock").textContent =
+  "Heure de Paris : " + parisClock();
+
+setInterval(() => {
+  $("clock").textContent =
+    "Heure de Paris : " + parisClock();
+},30000);
+
+load();
+</script>
 </body>
 </html>
