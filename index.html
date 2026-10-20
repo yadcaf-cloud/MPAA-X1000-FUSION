@@ -7,608 +7,789 @@
 <title>HIPPOFUSION X1000 — M1 à M5</title>
 <style>
 :root {
-  color-scheme: dark;
-  --bg: #071624;
-  --panel: #102a3e;
-  --line: #305068;
-  --green: #24d3a2;
-  --text: #eef7fa;
-  --muted: #b1c2cd;
+  --bg:#08111e;
+  --panel:#132238;
+  --line:#30445d;
+  --text:#f0f6ff;
+  --muted:#afc0d5;
+  --green:#20d58a;
+  --blue:#55aaff;
+  --yellow:#ffd166;
 }
-* { box-sizing: border-box; }
+* { box-sizing:border-box; }
 body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font: 15px Arial, sans-serif;
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font:15px Arial,sans-serif;
 }
 header {
-  text-align: center;
-  padding: 25px 12px;
-  background: linear-gradient(120deg,#102d43,#064d46);
-  border-bottom: 3px solid var(--green);
+  padding:22px 14px;
+  text-align:center;
+  background:linear-gradient(135deg,#123963,#071526);
+  border-bottom:2px solid var(--green);
 }
-h1 { font-size: 25px; margin: 0 0 8px; }
-h2 { font-size: 19px; margin: 0 0 15px; }
-main { max-width: 1150px; margin: auto; padding: 15px; }
+h1 { font-size:23px; margin:0 0 9px; }
+h2 { font-size:19px; margin:0 0 14px; }
+p { line-height:1.5; }
+small,.muted { color:var(--muted); }
+main { max-width:1150px; margin:auto; padding:12px; }
 .panel {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 13px;
-  padding: 16px;
-  margin-bottom: 16px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:15px;
+  margin:14px 0;
 }
-label { display: block; margin: 10px 0 5px; color: var(--muted); }
-input, textarea, select, button { font: inherit; }
-input, textarea, select {
-  width: 100%;
-  padding: 11px;
-  border-radius: 7px;
-  border: 1px solid #52728a;
-  background: #071d2e;
-  color: white;
-}
-textarea { min-height: 160px; font-family: monospace; }
-button {
-  border: 0;
-  border-radius: 8px;
-  background: var(--green);
-  color: #05261d;
-  font-weight: bold;
-  padding: 12px 15px;
-  margin: 7px 5px 5px 0;
-  cursor: pointer;
-}
-button.secondary { background: #365a73; color: white; }
-button:disabled { opacity: .5; cursor: not-allowed; }
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-  gap: 12px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:12px;
 }
-.muted { color: var(--muted); }
-.good { color: #6af0ba; }
-.warn { color: #ffd58c; }
-.bad { color: #ffaaaa; }
-.scroll { overflow-x: auto; }
-table { border-collapse: collapse; width: 100%; min-width: 950px; }
-th, td {
-  padding: 11px;
-  border: 1px solid #34576c;
-  text-align: left;
-  vertical-align: top;
+label {
+  display:block;
+  margin:9px 0 5px;
+  color:var(--muted);
 }
-th { background: #17455b; }
-td { background: #0b2335; }
-.pill {
-  display: inline-block;
-  padding: 5px 9px;
-  border-radius: 20px;
-  background: #164f41;
-  color: #9affd6;
+input,textarea,select {
+  width:100%;
+  background:#071525;
+  border:1px solid #48617e;
+  border-radius:8px;
+  color:white;
+  padding:11px;
+  font-size:15px;
 }
-.small { font-size: 13px; }
-pre {
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-  background: #071d2e;
-  padding: 12px;
-  border-radius: 8px;
+textarea { min-height:170px; font-family:monospace; }
+button {
+  border:0;
+  border-radius:8px;
+  padding:12px 15px;
+  margin:5px 5px 5px 0;
+  background:#2866a5;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
 }
-footer { text-align: center; padding: 22px; color: var(--muted); }
+button:disabled { opacity:.4; cursor:not-allowed; }
+button.green { background:#087a50; }
+button.gold { background:#96700e; }
+button.red { background:#913747; }
+.tablewrap { overflow-x:auto; }
+table {
+  width:100%;
+  border-collapse:collapse;
+  min-width:780px;
+  font-size:13px;
+}
+th,td {
+  padding:10px 8px;
+  border:1px solid var(--line);
+  text-align:left;
+  vertical-align:top;
+}
+th { background:#203a59; }
+tr:nth-child(even) { background:#172b43; }
+.good { color:var(--green); font-weight:bold; }
+.warn { color:var(--yellow); }
+.bad { color:#ff9da7; }
+.status {
+  padding:12px;
+  border-left:4px solid var(--blue);
+  background:#0a1b2e;
+  margin:12px 0;
+  white-space:pre-wrap;
+}
+.chip {
+  display:inline-block;
+  padding:6px 10px;
+  margin:3px;
+  border-radius:20px;
+  background:#264362;
+}
+.stats {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+.stat {
+  padding:13px;
+  background:#0a1b2e;
+  border-radius:9px;
+  text-align:center;
+}
+.stat strong { font-size:22px; color:var(--green); }
+footer { text-align:center; padding:22px; color:var(--muted); }
 </style>
 </head>
+
 <body>
 <header>
-  <h1>🇸🇳🧠🔥 HIPPOFUSION X1000</h1>
-  <strong>M1 à M5 — Intelligence hippique expérimentale</strong>
-  <p class="small">Analyses traçables · FIGÉS avant départ · Audits sans réécriture</p>
+<h1>🇸🇳🧠🔥 HIPPOFUSION X1000</h1>
+<strong>INTELLIGENCE HIPPIQUE — M1 À M5</strong>
+<p>Analyse autonome locale • FIGÉS • Audits • Historique</p>
+<small>Version HTML autonome — aucune connexion PMU garantie</small>
 </header>
+
 <main>
 <section class="panel">
-  <h2>1. Course et provenance</h2>
-  <div class="grid">
-    <div>
-      <label for="race">Course (ex. R1C3)</label>
-      <input id="race" placeholder="R1C3">
-    </div>
-    <div>
-      <label for="track">Hippodrome</label>
-      <input id="track" placeholder="Vincennes">
-    </div>
-    <div>
-      <label for="start">Départ — heure de Paris</label>
-      <input id="start" type="datetime-local">
-    </div>
-    <div>
-      <label for="surface">Discipline</label>
-      <select id="surface">
-        <option value="trot">Trot</option>
-        <option value="galop">Galop plat</option>
-        <option value="obstacle">Obstacle</option>
-      </select>
-    </div>
-    <div>
-      <label for="distance">Distance (m)</label>
-      <input id="distance" type="number" min="1" placeholder="2700">
-    </div>
-    <div>
-      <label for="going">Terrain / piste</label>
-      <input id="going" placeholder="Bon, souple, cendrée...">
-    </div>
-    <div>
-      <label for="source">Source des données</label>
-      <input id="source" placeholder="URL officielle ou provenance">
-    </div>
-    <div>
-      <label for="verified">Statut de vérification</label>
-      <select id="verified">
-        <option value="non">Non vérifiées</option>
-        <option value="oui">Vérifiées manuellement sur source indiquée</option>
-      </select>
-    </div>
-  </div>
-  <p class="muted small">
-    Les données doivent être renseignées à partir d'une source consultée.
-    Cette page n'effectue pas de vérification officielle automatique.
-  </p>
+<h2>📊 Tableau de bord</h2>
+<div class="stats">
+<div class="stat">Analyses<br><strong id="countAnalyses">0</strong></div>
+<div class="stat">FIGÉS<br><strong id="countFiges">0</strong></div>
+<div class="stat">Courses évaluées<br><strong id="countAudits">0</strong></div>
+<div class="stat">Moteurs<br><strong>5</strong></div>
+</div>
+<div id="message" class="status">Système prêt.</div>
 </section>
 
 <section class="panel">
-  <h2>2. Partants — données structurées</h2>
-  <p class="muted">
-    Une ligne par cheval, au format :
-    <code>numéro;nom;forme;aptitude;entourage;fiabilité;cote;nonPartant</code>.
-    Les notes forme, aptitude, entourage et fiabilité vont de 0 à 10
-    et sont des évaluations documentées, pas des faits officiels.
-    Cote facultative, nonPartant = oui/non.
-  </p>
-  <textarea id="horses" spellcheck="false"
-    placeholder="1;Cheval A;8;7;8;7;4.5;non&#10;2;Cheval B;7;9;6;8;6.0;non"></textarea>
-  <button id="analyze">🧠 Analyser M1–M5</button>
-  <button class="secondary" id="clear">Effacer la saisie</button>
-  <p id="message" role="status" aria-live="polite"></p>
+<h2>🏇 Identification de la course</h2>
+<div class="grid">
+<div>
+<label>Date de course</label>
+<input id="date" type="date">
+</div>
+<div>
+<label>Heure du départ — Paris</label>
+<input id="time" type="time">
+</div>
+<div>
+<label>Réunion</label>
+<input id="meeting" placeholder="R1">
+</div>
+<div>
+<label>Course</label>
+<input id="race" placeholder="C4">
+</div>
+<div>
+<label>Hippodrome</label>
+<input id="track" placeholder="Vincennes">
+</div>
+<div>
+<label>Discipline</label>
+<select id="discipline">
+<option value="trot">Trot</option>
+<option value="galop">Galop</option>
+<option value="obstacle">Obstacle</option>
+</select>
+</div>
+<div>
+<label>Distance (mètres)</label>
+<input id="distance" type="number" min="1">
+</div>
+<div>
+<label>Terrain / piste</label>
+<input id="surface" placeholder="Herbe, PSF, souple...">
+</div>
+<div>
+<label>Source des données</label>
+<input id="source" placeholder="URL ou référence vérifiable">
+</div>
+<div>
+<label>Heure de collecte (facultatif)</label>
+<input id="collected" type="datetime-local">
+</div>
+</div>
 </section>
 
 <section class="panel">
-  <h2>3. Tableau officiel M1–M5</h2>
-  <p id="qualification" class="muted">Aucune course analysée.</p>
-  <div class="scroll">
-    <table>
-      <thead>
-        <tr>
-          <th>Moteur</th>
-          <th>🥇 Gagnant espéré</th>
-          <th>🥈 Meilleur placé</th>
-          <th>Ordre d'arrivée espéré</th>
-          <th>🎯 Pari retenu</th>
-          <th>Qualification</th>
-          <th>Validation</th>
-          <th>Heure Paris</th>
-        </tr>
-      </thead>
-      <tbody id="results">
-        <tr><td colspan="8">En attente de données.</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <button id="freeze" disabled>🔒 FIGER avant départ</button>
-  <button class="secondary" id="export">Exporter historique JSON</button>
-  <p class="small muted">
-    Les cinq moteurs utilisent des pondérations différentes.
-    Les pronostics ne constituent aucune garantie de gain.
-    Aucun pari réel n'est placé.
-  </p>
+<h2>🐎 Participants et performances</h2>
+<p class="muted">
+Une ligne par cheval, séparée par un point-virgule.
+Les notes sont comprises entre 0 et 100.
+Les cotes sont facultatives.
+</p>
+<p>
+<strong>Format :</strong><br>
+Numéro;Nom;Forme;Aptitude;Régularité;Entourage;Cote
+</p>
+<textarea id="horses" spellcheck="false"
+placeholder="1;Cheval Alpha;80;75;90;70;5.2
+2;Cheval Beta;76;88;70;85;8.1
+3;Cheval Gamma;91;67;78;80;12"></textarea>
+<label>Numéros non-partants (séparés par des virgules)</label>
+<input id="nonrunners" placeholder="4, 9">
+<p class="muted">
+Les notes doivent être renseignées à partir de données fiables.
+Les valeurs fictives ne doivent pas être utilisées pour un pari réel.
+</p>
+<button onclick="analyze()" class="green">🧠 Analyser M1–M5</button>
+<button onclick="clearEntry()">Effacer la saisie</button>
 </section>
 
 <section class="panel">
-  <h2>4. Arrivée officielle et audit</h2>
-  <label for="finish">Ordre officiel (ex. 7-1-6-4-2)</label>
-  <input id="finish" placeholder="7-1-6-4-2">
-  <label for="finishSource">Source officielle du résultat</label>
-  <input id="finishSource" placeholder="Lien ou référence du résultat">
-  <button id="audit">Comparer aux FIGÉS</button>
-  <div id="auditOutput" class="muted">
-    Audit disponible après un FIGÉ et une arrivée renseignée.
-  </div>
+<h2>🌟 Qualification de la course</h2>
+<div id="qualification" class="status">
+Aucune analyse disponible.
+</div>
+<div id="diagnostic"></div>
 </section>
 
 <section class="panel">
-  <h2>5. Historique local des FIGÉS</h2>
-  <p class="muted small">
-    Les enregistrements sont conservés dans le stockage de ce navigateur.
-    Ils peuvent disparaître si les données du navigateur sont effacées.
-    Exportez-les pour sauvegarde.
-    Ce n'est pas un archivage serveur inviolable.
-  </p>
-  <div id="history">Aucun FIGÉ.</div>
+<h2>🏆 Tableau officiel M1 à M5</h2>
+<div class="tablewrap">
+<table>
+<thead>
+<tr>
+<th>Moteur</th>
+<th>🥇 Gagnant espéré</th>
+<th>🥈 Meilleur placé</th>
+<th>Ordre espéré</th>
+<th>🎯 Pari retenu</th>
+<th>Qualification</th>
+<th>Validation</th>
+<th>Heure Paris</th>
+</tr>
+</thead>
+<tbody id="results">
+<tr><td colspan="8">En attente d'analyse.</td></tr>
+</tbody>
+</table>
+</div>
+<button id="freezeButton" class="gold"
+onclick="freeze()" disabled>
+🔒 FIGER avant départ
+</button>
+</section>
+
+<section class="panel">
+<h2>📋 Historique des FIGÉS</h2>
+<div id="history">Aucun FIGÉ enregistré.</div>
+<button onclick="exportData()">📥 Exporter JSON</button>
+<button onclick="document.getElementById('importFile').click()">
+📤 Importer JSON
+</button>
+<input type="file" id="importFile"
+accept=".json,application/json" hidden
+onchange="importData(event)">
+</section>
+
+<section class="panel">
+<h2>🏁 Contrôle des arrivées officielles</h2>
+<label>Identifiant du FIGÉ à auditer</label>
+<select id="auditSelect"></select>
+<label>Arrivée officielle (numéros séparés par des tirets)</label>
+<input id="arrival" placeholder="7-1-6-4-2">
+<label>Source officielle de l'arrivée</label>
+<input id="arrivalSource" placeholder="URL officielle">
+<button onclick="audit()" class="green">
+Comparer avec le FIGÉ
+</button>
+<div id="auditResult" class="status">
+Aucun audit effectué.
+</div>
 </section>
 </main>
 
 <footer>
-  HIPPOFUSION X1000 — Outil d'aide à l'étude,
-  sans connexion PMU garantie
+🇸🇳 HIPPOFUSION X1000 — M1 à M5<br>
+Les pronostics sont des estimations, jamais des garanties.
 </footer>
 
 <script>
-'use strict';
+"use strict";
 
 const $ = id => document.getElementById(id);
-const STORAGE = 'hippofusion-x1000-figes-v1';
-
-const weights = [
-  {name:'🔵 M1',w:[.40,.25,.20,.15],market:0,method:'forme'},
-  {name:'🟢 M2',w:[.20,.45,.15,.20],market:0,method:'aptitude'},
-  {name:'🟣 M3',w:[.20,.15,.40,.25],market:0,method:'entourage'},
-  {name:'🟠 M4',w:[.20,.20,.15,.45],market:0,method:'fiabilité'},
-  {name:'🔴 M5',w:[.25,.25,.25,.25],market:.08,method:'consensus'}
-];
-
+const KEY = "HIPPOFUSION_X1000_V4";
+const TZ = "Europe/Paris";
 let current = null;
 
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g,c=>({
-    '&':'&amp;',
-    '<':'&lt;',
-    '>':'&gt;',
-    '"':'&quot;',
-    "'":'&#39;'
-  }[c]));
+function parisParts(date = new Date()) {
+  const parts = new Intl.DateTimeFormat("en-GB", {
+    timeZone: TZ,
+    year:"numeric",
+    month:"2-digit",
+    day:"2-digit",
+    hour:"2-digit",
+    minute:"2-digit",
+    hourCycle:"h23"
+  }).formatToParts(date);
+  const o = {};
+  parts.forEach(p => o[p.type] = p.value);
+  return {
+    date:`${o.year}-${o.month}-${o.day}`,
+    time:`${o.hour}:${o.minute}`,
+    display:`${o.date || ""}${o.hour}:${o.minute}`
+  };
 }
 
 function nowParis() {
-  return new Intl.DateTimeFormat('fr-FR',{
-    timeZone:'Europe/Paris',
-    dateStyle:'short',
-    timeStyle:'medium'
-  }).format(new Date());
-}
-
-function parisDate(iso) {
-  if (!iso) return null;
-  const [date,time] = iso.split('T');
-  const [y,m,d] = date.split('-').map(Number);
-  const [hh,mm] = time.split(':').map(Number);
-  if (!y || !m || !d ||
-      !Number.isFinite(hh) || !Number.isFinite(mm)) return null;
-
-  const guess = Date.UTC(y,m-1,d,hh,mm);
-  let utc = guess;
-
-  for (let i=0;i<3;i++) {
-    const parts = new Intl.DateTimeFormat('en-GB',{
-      timeZone:'Europe/Paris',
-      year:'numeric',month:'2-digit',day:'2-digit',
-      hour:'2-digit',minute:'2-digit',hourCycle:'h23'
-    }).formatToParts(new Date(utc));
-    const p = Object.fromEntries(parts.map(x=>[x.type,x.value]));
-    const local = Date.UTC(
-      +p.year,+p.month-1,+p.day,+p.hour,+p.minute
-    );
-    utc += guess-local;
-  }
-
-  const chk = new Intl.DateTimeFormat('sv-SE',{
-    timeZone:'Europe/Paris',
-    year:'numeric',month:'2-digit',day:'2-digit',
-    hour:'2-digit',minute:'2-digit',hourCycle:'h23'
-  }).format(new Date(utc)).replace(' ','T');
-
-  return chk===iso ? utc : null;
-}
-
-function parseHorses(raw) {
-  const rows = raw.split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
-  if (rows.length<5)
-    throw Error('Il faut au moins 5 chevaux renseignés.');
-
-  const seen = new Set();
-
-  return rows.map((line,i)=>{
-    const a = line.split(';').map(x=>x.trim());
-    if (a.length!==8)
-      throw Error('Ligne '+(i+1)+' : 8 champs attendus.');
-
-    const n = Number(a[0]);
-    if (!Number.isInteger(n)||n<1||seen.has(n))
-      throw Error('Numéro invalide ou répété ligne '+(i+1));
-    seen.add(n);
-
-    if (!a[1]) throw Error('Nom manquant ligne '+(i+1));
-
-    const metrics = a.slice(2,6).map(Number);
-    if (metrics.some((v,j)=>
-      a[j+2]===''||!Number.isFinite(v)||v<0||v>10
-    )) throw Error('Notes de 0 à 10 requises ligne '+(i+1));
-
-    const odds = a[6]==='' ? null :
-      Number(a[6].replace(',','.'));
-
-    if (odds!==null&&(!Number.isFinite(odds)||odds<=1))
-      throw Error('Cote invalide ligne '+(i+1));
-
-    const np = a[7].toLowerCase();
-    if (!['oui','non'].includes(np))
-      throw Error('nonPartant doit valoir oui ou non ligne '+(i+1));
-
-    return {
-      n,name:a[1],metrics,odds,np:np==='oui'
-    };
-  });
+  const p = parisParts();
+  return `${p.date} ${p.time}`;
 }
 
 function load() {
   try {
-    const a = JSON.parse(localStorage.getItem(STORAGE)||'[]');
-    return Array.isArray(a)?a:[];
+    const data = JSON.parse(localStorage.getItem(KEY) || "[]");
+    return Array.isArray(data) ? data : [];
   } catch {
     return [];
   }
 }
 
-function save(a) {
-  localStorage.setItem(STORAGE,JSON.stringify(a));
+function save(data) {
+  localStorage.setItem(KEY, JSON.stringify(data));
 }
 
-function score(h,m) {
-  let s = h.metrics.reduce(
-    (sum,v,i)=>sum+v*m.w[i],0
-  );
-  if (m.market&&h.odds!==null)
-    s += m.market*Math.max(0,10-Math.log(h.odds)*2);
-  return s;
+function msg(text) {
+  $("message").textContent = text;
 }
 
-function fingerprint(o) {
-  const s = JSON.stringify(o);
-  let h = 2166136261;
-  for (let i=0;i<s.length;i++) {
-    h ^= s.charCodeAt(i);
-    h = Math.imul(h,16777619);
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, c => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  })[c]);
+}
+
+function parseNumber(value, label, min=0, max=100) {
+  const n = Number(String(value).trim().replace(",","."));
+  if (!Number.isFinite(n) || n < min || n > max) {
+    throw Error(`${label} invalide : ${value}`);
   }
-  return (h>>>0).toString(16).padStart(8,'0');
+  return n;
 }
 
-function renderAnalysis() {
-  if (!current) return;
-  const q = current.quality;
-  const stars = q>=4 ? '🌟'.repeat(q) : 'Non qualifiée';
-
-  $('qualification').textContent =
-    'Qualification indicative : '+stars+
-    ' — '+current.horses.length+' partants actifs — Source '+
-    (current.verified?'déclarée vérifiée':'non vérifiée')+'.';
-
-  $('results').innerHTML = current.predictions.map(p=>
-    '<tr>'+
-    '<td>'+escapeHtml(p.engine)+'</td>'+
-    '<td>'+escapeHtml(p.winner)+'</td>'+
-    '<td>'+escapeHtml(p.placed)+'</td>'+
-    '<td>'+escapeHtml(p.order.join('-'))+'</td>'+
-    '<td>'+escapeHtml(p.bet)+'</td>'+
-    '<td>'+escapeHtml(stars)+'</td>'+
-    '<td>'+escapeHtml(current.verified?
-      'Vérification déclarée':'Non vérifiée')+'</td>'+
-    '<td>'+escapeHtml(current.createdParis)+'</td>'+
-    '</tr>'
-  ).join('');
-
-  $('freeze').disabled = false;
+function parseHorses() {
+  const lines = $("horses").value.trim().split(/\n+/);
+  if (!lines[0]) throw Error("Saisissez les chevaux.");
+  const seen = new Set();
+  const horses = lines.map((line,index) => {
+    const p = line.split(";").map(x => x.trim());
+    if (p.length < 6 || p.length > 7)
+      throw Error(`Ligne ${index+1} : format incorrect.`);
+    const number = Number(p[0]);
+    if (!Number.isInteger(number) || number <= 0)
+      throw Error(`Numéro incorrect ligne ${index+1}.`);
+    if (seen.has(number))
+      throw Error(`Numéro ${number} en double.`);
+    if (!p[1]) throw Error(`Nom manquant ligne ${index+1}.`);
+    seen.add(number);
+    return {
+      number,
+      name:p[1],
+      form:parseNumber(p[2],"Forme"),
+      aptitude:parseNumber(p[3],"Aptitude"),
+      regularity:parseNumber(p[4],"Régularité"),
+      entourage:parseNumber(p[5],"Entourage"),
+      odds:p[6] ? parseNumber(p[6],"Cote",1.01,10000) : null
+    };
+  });
+  const npText = $("nonrunners").value.trim();
+  const nonrunners = npText ?
+    npText.split(",").map(s => Number(s.trim())) : [];
+  if (nonrunners.some(n => !Number.isInteger(n) || n <= 0))
+    throw Error("Liste des non-partants incorrecte.");
+  return {
+    horses:horses.filter(h => !nonrunners.includes(h.number)),
+    nonrunners
+  };
 }
 
-$('analyze').onclick = () => {
+function raceInfo() {
+  const date = $("date").value;
+  const time = $("time").value;
+  const meeting = $("meeting").value.trim().toUpperCase();
+  const race = $("race").value.trim().toUpperCase();
+  const track = $("track").value.trim();
+  if (!date || !time || !meeting || !race || !track)
+    throw Error("Identification de la course incomplète.");
+  return {
+    date,time,meeting,race,track,
+    discipline:$("discipline").value,
+    distance:Number($("distance").value) || null,
+    surface:$("surface").value.trim(),
+    source:$("source").value.trim(),
+    collected:$("collected").value || null
+  };
+}
+
+// Conversion de l'heure civile de Paris en instant UTC.
+// Les heures inexistantes ou ambiguës au changement d'heure
+// sont refusées pour éviter un FIGÉ incorrect.
+function parisTimestamp(date,time) {
+  const target = `${date} ${time}`;
+  const base = Date.parse(`${date}T${time}:00Z`);
+  if (!Number.isFinite(base)) return null;
+  const matches = [];
+  for (let offset=-120; offset<=180; offset+=30) {
+    const instant = base + offset*60000;
+    const p = parisParts(new Date(instant));
+    if (`${p.date} ${p.time}` === target)
+      matches.push(instant);
+  }
+  const unique = [...new Set(matches)];
+  return unique.length === 1 ? unique[0] : null;
+}
+
+function beforeStart(info) {
+  const start = parisTimestamp(info.date,info.time);
+  return start !== null && Date.now() < start;
+}
+
+function rank(horses,weights,extra=()=>0) {
+  return horses.map(h => ({
+    ...h,
+    score:
+      h.form*weights[0] +
+      h.aptitude*weights[1] +
+      h.regularity*weights[2] +
+      h.entourage*weights[3] +
+      extra(h)
+  })).sort((a,b) =>
+    b.score-a.score || a.number-b.number
+  );
+}
+
+function engines(horses) {
+  const methods = [
+    {
+      id:"🔵 M1",
+      name:"Forme récente",
+      weights:[.45,.25,.20,.10],
+      extra:()=>0
+    },
+    {
+      id:"🟢 M2",
+      name:"Aptitude au profil",
+      weights:[.20,.45,.20,.15],
+      extra:()=>0
+    },
+    {
+      id:"🟣 M3",
+      name:"Régularité",
+      weights:[.20,.20,.45,.15],
+      extra:()=>0
+    },
+    {
+      id:"🟠 M4",
+      name:"Entourage et équilibre",
+      weights:[.20,.25,.20,.35],
+      extra:()=>0
+    },
+    {
+      id:"🔴 M5",
+      name:"Valeur et cote",
+      weights:[.30,.25,.25,.20],
+      extra:h => h.odds ?
+        Math.min(8,Math.log(h.odds)*2) : 0
+    }
+  ];
+
+  return methods.map(m => {
+    const ranked = rank(horses,m.weights,m.extra);
+    const first = ranked[0];
+    const second = ranked[1] || first;
+    const top = ranked.slice(0,5);
+    const gap = ranked.length > 1 ?
+      first.score-second.score : 0;
+    const quality = Math.min(100,
+      Math.max(0,first.score + Math.min(10,gap))
+    );
+    return {
+      id:m.id,
+      method:m.name,
+      winner:first.number,
+      winnerName:first.name,
+      placed:second.number,
+      placedName:second.name,
+      order:top.map(h=>h.number),
+      bet:`Simple placé ${first.number}`,
+      score:Number(quality.toFixed(2)),
+      validation:"Analyse locale non vérifiée"
+    };
+  });
+}
+
+function qualify(info,horses,results) {
+  const votes = {};
+  results.forEach(r => {
+    votes[r.winner] = (votes[r.winner] || 0)+1;
+  });
+  const agreement = Math.max(...Object.values(votes));
+  const mean = results.reduce((s,r)=>s+r.score,0)/5;
+  const complete = Boolean(
+    info.source && info.distance && info.surface
+  );
+  const suitable = horses.length >= 5 &&
+    complete && mean >= 65 && agreement >= 3;
+  const stars = suitable ?
+    (agreement >= 4 && mean >= 75 ? 5 : 4) : 0;
+  return {
+    stars,
+    suitable,
+    agreement,
+    mean:Number(mean.toFixed(2)),
+    complete,
+    label:suitable ?
+      "Course candidate à l'étude" :
+      "Données ou convergence insuffisantes"
+  };
+}
+
+function analyze() {
   try {
-    const all = parseHorses($('horses').value);
-    const active = all.filter(x=>!x.np);
+    const info = raceInfo();
+    const parsed = parseHorses();
+    if (parsed.horses.length < 2)
+      throw Error("Deux partants au minimum sont nécessaires.");
 
-    if (active.length<5)
-      throw Error('Au moins cinq partants actifs sont nécessaires.');
-
-    const start = parisDate($('start').value);
-    if (start===null)
-      throw Error('Date et heure de départ valides requises (heure de Paris).');
-
-    if (Date.now()>=start)
-      throw Error('Départ déjà atteint : impossible de créer un nouveau pronostic pré-départ.');
-
-    const race = $('race').value.trim().toUpperCase();
-    const track = $('track').value.trim();
-
-    if (!race||!track)
-      throw Error('Course et hippodrome obligatoires.');
-
-    const preds = weights.map(m=>{
-      const ranked = [...active].sort(
-        (a,b)=>score(b,m)-score(a,m)||a.n-b.n
-      );
-      return {
-        engine:m.name,
-        method:m.method,
-        winner:ranked[0].n+' '+ranked[0].name,
-        placed:ranked[1].n+' '+ranked[1].name,
-        order:ranked.slice(0,5).map(x=>x.n),
-        bet:'Simple placé '+ranked[0].n
-      };
-    });
-
-    const verified = $('verified').value==='oui';
-    const complete = active.filter(
-      x=>x.odds!==null
-    ).length/active.length;
-    const avg = active.reduce(
-      (s,h)=>s+h.metrics[3],0
-    )/active.length;
-
-    const quality = (verified&&avg>=7&&complete>=.8)
-      ? 5 : (verified&&avg>=6) ? 4 : 0;
+    const results = engines(parsed.horses);
+    const qualification = qualify(info,parsed.horses,results);
 
     current = {
-      race,track,
-      startLocal:$('start').value,
-      startEpoch:start,
-      discipline:$('surface').value,
-      distance:$('distance').value,
-      going:$('going').value,
-      source:$('source').value,
-      verified,
-      horses:active,
-      predictions:preds,
-      quality,
-      createdAt:new Date().toISOString(),
-      createdParis:nowParis()
+      id:crypto.randomUUID ?
+        crypto.randomUUID() :
+        `${Date.now()}-${Math.random()}`,
+      info,
+      horses:parsed.horses,
+      nonrunners:parsed.nonrunners,
+      results,
+      qualification,
+      analyzedAt:new Date().toISOString(),
+      frozenAt:null,
+      audit:null,
+      mode:"local"
     };
 
-    renderAnalysis();
-    $('message').textContent =
-      'Analyse expérimentale calculée. Vérifiez les données avant FIGÉ.';
-  } catch(e) {
-    current = null;
-    $('freeze').disabled = true;
-    $('message').textContent = 'Erreur : '+e.message;
-    $('results').innerHTML =
-      '<tr><td colspan="8">Analyse indisponible.</td></tr>';
-  }
-};
-
-$('freeze').onclick = () => {
-  try {
-    if (!current) throw Error('Aucune analyse.');
-
-    if (Date.now()>=current.startEpoch)
-      throw Error('Départ atteint : FIGÉ refusé.');
-
-    const id = current.race+'|'+current.track+'|'+current.startLocal;
-    const arr = load();
-
-    if (arr.some(x=>x.id===id))
-      throw Error('Un FIGÉ existe déjà pour cette course. Il ne peut pas être remplacé.');
-
-    const record = {
-      id,...current,
-      frozenAt:new Date().toISOString(),
-      frozenParis:nowParis()
-    };
-
-    record.checksum = fingerprint(record);
-    arr.push(record);
-    save(arr);
-
-    $('message').textContent =
-      '🔒 FIGÉ enregistré à '+record.frozenParis+' (heure Paris).';
-    $('freeze').disabled = true;
+    renderResults(current);
+    $("freezeButton").disabled = !beforeStart(info);
+    msg("Analyse locale M1–M5 terminée à " + nowParis());
+    if (!beforeStart(info))
+      msg("Analyse terminée. FIGÉ interdit : départ atteint ou heure ambiguë.");
     renderHistory();
   } catch(e) {
-    $('message').textContent = 'FIGÉ impossible : '+e.message;
+    current = null;
+    $("freezeButton").disabled = true;
+    msg("Erreur : " + e.message);
   }
-};
-
-function renderHistory() {
-  const arr = load();
-
-  $('history').innerHTML = arr.length ?
-    arr.slice().reverse().map(x=>
-      '<div class="panel">'+
-      '<strong>🔒 '+escapeHtml(x.race)+
-      ' — '+escapeHtml(x.track)+'</strong>'+
-      '<p class="small">Départ : '+
-      escapeHtml(x.startLocal)+
-      ' (Paris) | FIGÉ : '+
-      escapeHtml(x.frozenParis)+
-      ' | Empreinte indicative : '+
-      escapeHtml(x.checksum)+'</p>'+
-      '<p>'+escapeHtml(x.predictions.map(
-        p=>p.engine+': '+p.order.join('-')
-      ).join(' | '))+'</p></div>'
-    ).join('') : 'Aucun FIGÉ.';
 }
 
-$('audit').onclick = () => {
-  const arr = load();
-  const id = $('race').value.trim().toUpperCase()+
-    '|'+$('track').value.trim()+'|'+$('start').value;
+function renderResults(data) {
+  const q = data.qualification;
+  $("qualification").textContent = q.suitable ?
+    "🌟".repeat(q.stars) + " " + q.label :
+    q.label;
+  $("diagnostic").textContent =
+    `Convergence : ${q.agreement}/5 moteurs. ` +
+    `Indice moyen : ${q.mean}/100. ` +
+    `Données de contexte : ${q.complete ? "renseignées" : "incomplètes"}. ` +
+    "Qualification indicative, non certifiée PMU.";
 
-  const rec = arr.find(x=>x.id===id);
-  if (!rec) {
-    $('auditOutput').textContent =
-      'Aucun FIGÉ correspondant à cette course.';
+  $("results").innerHTML = data.results.map(r => `
+    <tr>
+      <td>${escapeHTML(r.id)}<br>
+      <small>${escapeHTML(r.method)}</small></td>
+      <td>${r.winner} ${escapeHTML(r.winnerName)}</td>
+      <td>${r.placed} ${escapeHTML(r.placedName)}</td>
+      <td>${r.order.join("-")}</td>
+      <td>${escapeHTML(r.bet)}</td>
+      <td>${q.suitable ? "🌟".repeat(q.stars) :
+        "À approfondir"}</td>
+      <td>${escapeHTML(r.validation)}</td>
+      <td>${escapeHTML(nowParis())}</td>
+    </tr>
+  `).join("");
+}
+
+function freeze() {
+  if (!current) return msg("Analyse absente.");
+  if (!beforeStart(current.info))
+    return msg("FIGÉ refusé : le départ est atteint ou non vérifiable.");
+  const records = load();
+  if (records.some(r =>
+    r.info.date === current.info.date &&
+    r.info.meeting === current.info.meeting &&
+    r.info.race === current.info.race &&
+    r.info.track.toLowerCase() ===
+      current.info.track.toLowerCase()
+  )) {
+    return msg("Cette course possède déjà un FIGÉ. Historique conservé.");
+  }
+  current.frozenAt = new Date().toISOString();
+  current.results.forEach(r => r.validation = "🔒 FIGÉ local");
+  records.push(structuredClone(current));
+  try {
+    save(records);
+  } catch(e) {
+    current.frozenAt = null;
+    return msg("Enregistrement impossible : " + e.message);
+  }
+  $("freezeButton").disabled = true;
+  renderResults(current);
+  renderHistory();
+  msg("🔒 FIGÉ enregistré avant le départ : " + nowParis());
+}
+
+function renderHistory() {
+  const records = load();
+  $("countAnalyses").textContent = records.length + (current ? 1 : 0);
+  $("countFiges").textContent = records.length;
+  $("countAudits").textContent =
+    records.filter(r=>r.audit).length;
+
+  const select = $("auditSelect");
+  select.innerHTML = "";
+  records.forEach(r => {
+    const option = document.createElement("option");
+    option.value = r.id;
+    option.textContent =
+      `${r.info.date} ${r.info.meeting}${r.info.race} ` +
+      `${r.info.track}`;
+    select.appendChild(option);
+  });
+
+  if (!records.length) {
+    $("history").textContent = "Aucun FIGÉ enregistré.";
     return;
   }
+  $("history").innerHTML = records.slice().reverse()
+    .map(r => `
+    <div class="panel">
+      <strong>🔒 ${escapeHTML(r.info.date)}
+      ${escapeHTML(r.info.meeting)}
+      ${escapeHTML(r.info.race)} —
+      ${escapeHTML(r.info.track)}</strong>
+      <p>Départ : ${escapeHTML(r.info.time)} Paris<br>
+      FIGÉ : ${escapeHTML(r.frozenAt || "inconnu")}<br>
+      Statut : ${r.audit ? "Audité" : "En attente d'arrivée"}</p>
+      ${r.results.map(m => `
+        <span class="chip">${escapeHTML(m.id)} :
+        ${m.winner}</span>`).join("")}
+    </div>
+  `).join("");
+}
 
-  const nums = $('finish').value
-    .split(/[-,;\s]+/)
-    .filter(Boolean)
-    .map(Number);
+function audit() {
+  const records = load();
+  const record = records.find(r=>r.id === $("auditSelect").value);
+  if (!record) return msg("Sélectionnez un FIGÉ.");
+  if (!record.frozenAt)
+    return msg("Enregistrement non FIGÉ.");
 
-  if (nums.length<5||
-      nums.some(x=>!Number.isInteger(x)||x<=0)||
-      new Set(nums).size!==nums.length) {
-    $('auditOutput').textContent =
-      'Arrivée invalide : saisir au moins cinq numéros distincts.';
-    return;
-  }
+  const source = $("arrivalSource").value.trim();
+  const arrival = $("arrival").value.trim()
+    .split(/[-,\s]+/).map(Number);
+  if (!source)
+    return msg("Source de l'arrivée obligatoire.");
+  if (arrival.length < 1 ||
+      arrival.some(n=>!Number.isInteger(n)||n<=0) ||
+      new Set(arrival).size !== arrival.length)
+    return msg("Arrivée incorrecte.");
 
-  const source = $('finishSource').value.trim();
-  if (!source) {
-    $('auditOutput').textContent =
-      'Indiquer la source de l’arrivée officielle.';
-    return;
-  }
+  const start = parisTimestamp(record.info.date,record.info.time);
+  if (start === null || Date.parse(record.frozenAt) >= start)
+    return msg("FIGÉ non validable : horodatage incorrect.");
 
-  if (Date.now()<rec.startEpoch) {
-    $('auditOutput').textContent =
-      'Départ non atteint : audit refusé.';
-    return;
-  }
+  const details = record.results.map(m => ({
+    motor:m.id,
+    winnerCorrect:m.winner === arrival[0],
+    inTop3:arrival.slice(0,3).includes(m.winner),
+    orderCorrect:
+      m.order.slice(0,arrival.length).join("-") ===
+      arrival.join("-")
+  }));
 
-  const actual = nums.slice(0,5);
+  record.audit = {
+    arrival,
+    source,
+    checkedAt:new Date().toISOString(),
+    details,
+    status:"Comparaison saisie — source non vérifiée automatiquement"
+  };
+  try { save(records); }
+  catch(e) { return msg("Audit non enregistré : " + e.message); }
 
-  const html = rec.predictions.map(p=>{
-    const hit = p.order.filter(n=>actual.includes(n)).length;
-    return '<tr>'+
-      '<td>'+escapeHtml(p.engine)+'</td>'+
-      '<td>'+hit+'/5</td>'+
-      '<td>'+(p.order[0]===actual[0]?'Oui':'Non')+'</td>'+
-      '<td>'+(p.order.every((n,i)=>n===actual[i])?'Oui':'Non')+'</td>'+
-      '</tr>';
-  }).join('');
+  $("auditResult").textContent =
+    `Arrivée saisie : ${arrival.join("-")}\n` +
+    details.map(d =>
+      `${d.motor} : gagnant ${d.winnerCorrect ? "OUI":"NON"}, ` +
+      `dans les trois premiers ${d.inTop3 ? "OUI":"NON"}, ` +
+      `ordre ${d.orderCorrect ? "OUI":"NON"}`
+    ).join("\n") +
+    "\nRésultat déclaré par l'utilisateur, non authentifié.";
+  renderHistory();
+}
 
-  $('auditOutput').innerHTML =
-    '<p>Arrivée déclarée : '+
-    escapeHtml(actual.join('-'))+
-    ' | Source : '+escapeHtml(source)+
-    ' (non vérifiée automatiquement)</p>'+
-    '<div class="scroll"><table><thead><tr>'+
-    '<th>Moteur</th>'+
-    '<th>Chevaux dans les 5</th>'+
-    '<th>Gagnant exact</th>'+
-    '<th>Ordre exact</th>'+
-    '</tr></thead><tbody>'+
-    html+'</tbody></table></div>';
-};
-
-$('export').onclick = () => {
+function exportData() {
   const blob = new Blob([
     JSON.stringify({
+      application:"HIPPOFUSION X1000",
+      version:"4.0",
       exportedAt:new Date().toISOString(),
       records:load()
     },null,2)
-  ],{type:'application/json'});
-
+  ],{type:"application/json"});
   const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
+  const a = document.createElement("a");
   a.href = url;
-  a.download = 'HIPPOFUSION_X1000_FIGES_'+
-    new Date().toISOString().slice(0,10)+'.json';
+  a.download = "HIPPOFUSION_X1000_FIGES_" +
+    new Date().toISOString().slice(0,10) + ".json";
+  document.body.appendChild(a);
   a.click();
+  a.remove();
   setTimeout(()=>URL.revokeObjectURL(url),1000);
-};
+}
 
-$('clear').onclick = () => {
-  $('horses').value = '';
-  $('message').textContent =
-    'Saisie effacée. Les FIGÉS historiques sont conservés.';
-};
+async function importData(event) {
+  try {
+    const file = event.target.files[0];
+    if (!file) return;
+    const data = JSON.parse(await file.text());
+    if (!Array.isArray(data.records))
+      throw Error("Fichier incompatible.");
+    const existing = load();
+    const ids = new Set(existing.map(r=>r.id));
+    let added = 0;
+    for (const r of data.records) {
+      if (!r || typeof r.id !== "string" ||
+          !r.info || !Array.isArray(r.results) ||
+          typeof r.frozenAt !== "string" ||
+          !Number.isFinite(Date.parse(r.frozenAt)) ||
+          !r.info.date || !r.info.time ||
+          !r.info.track || !r.info.meeting || !r.info.race ||
+          r.results.length !== 5 ||
+          r.results.some(m =>
+            !m.id || !Number.isInteger(m.winner) ||
+            !Array.isArray(m.order))) continue;
+      const start = parisTimestamp(r.info.date,r.info.time);
+      if (start === null || Date.parse(r.frozenAt) >= start)
+        continue;
+      if (!ids.has(r.id)) {
+        existing.push(r);
+        ids.add(r.id);
+        added++;
+      }
+    }
+    save(existing);
+    renderHistory();
+    msg(`${added} FIGÉ(s) importé(s). Origine non authentifiée.`);
+  } catch(e) {
+    msg("Import impossible : " + e.message);
+  } finally {
+    event.target.value = "";
+  }
+}
 
+function clearEntry() {
+  $("horses").value = "";
+  $("nonrunners").value = "";
+  current = null;
+  $("freezeButton").disabled = true;
+  $("results").innerHTML =
+    '<tr><td colspan="8">En attente d’analyse.</td></tr>';
+  $("qualification").textContent = "Aucune analyse disponible.";
+  $("diagnostic").textContent = "";
+  msg("Saisie effacée. Les FIGÉS historiques sont conservés.");
+  renderHistory();
+}
+
+$("date").value = parisParts().date;
+$("time").value = "";
 renderHistory();
 </script>
 </body>
