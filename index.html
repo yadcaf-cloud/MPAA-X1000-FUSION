@@ -6,161 +6,166 @@
 <meta name="theme-color" content="#071525">
 <title>HIPPOFUSION X1000 — M1 à M5</title>
 <style>
-:root{
+:root {
   --bg:#071525;
   --panel:#14243d;
   --dark:#091b2e;
   --text:#edf5ff;
-  --muted:#b5c6dc;
+  --muted:#a9bbd2;
   --green:#24d493;
   --blue:#55a9ff;
   --border:#334a68;
   --gold:#ffd36a;
   --red:#ff7887;
+  --purple:#c4a1ff;
 }
-*{box-sizing:border-box}
-body{
+* { box-sizing:border-box; }
+body {
   margin:0;
   background:var(--bg);
   color:var(--text);
   font-family:system-ui,-apple-system,Arial,sans-serif;
   line-height:1.5;
 }
-header{
-  padding:32px 16px;
+header {
   text-align:center;
-  background:linear-gradient(135deg,#153f69,#08182b);
-  border-bottom:4px solid var(--green);
+  padding:30px 16px;
+  background:linear-gradient(135deg,#102d4b,#071525);
+  border-bottom:1px solid var(--border);
 }
-h1{font-size:clamp(25px,5vw,39px);margin:0}
-header h2{font-size:19px;margin:12px 0}
-header p{color:var(--muted)}
-main{max-width:1200px;margin:auto;padding:15px}
-section{
+h1 { font-size:clamp(24px,5vw,38px); margin:0; }
+h2 { font-size:21px; margin:0 0 16px; }
+h3 { font-size:17px; }
+.subtitle { color:var(--muted); }
+.container { max-width:1250px; margin:auto; padding:16px; }
+.panel {
   background:var(--panel);
-  padding:20px;
   border:1px solid var(--border);
-  border-radius:18px;
-  margin:18px 0;
+  border-radius:15px;
+  padding:18px;
+  margin-bottom:18px;
 }
-h2{font-size:22px;margin:0 0 15px}
-h3{font-size:17px;margin:18px 0 8px}
-label{
-  display:block;
-  color:var(--muted);
-  margin:12px 0 5px;
-}
-input,select,textarea{
-  width:100%;
-  background:var(--dark);
-  color:white;
-  border:1px solid #49617d;
-  border-radius:10px;
-  padding:12px;
-  font-size:16px;
-}
-textarea{
-  min-height:160px;
-  font-family:monospace;
-  font-size:13px;
-}
-button{
-  border:0;
-  border-radius:10px;
-  padding:12px 15px;
-  font-weight:700;
-  font-size:14px;
-  cursor:pointer;
-  margin:5px 4px 5px 0;
-}
-button:disabled{opacity:.4;cursor:not-allowed}
-.primary{background:var(--green);color:#032419}
-.secondary{background:#2766a0;color:white}
-.warning{background:var(--gold);color:#322400}
-.danger{background:#963b4c;color:white}
-.stats{
+.grid {
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
   gap:12px;
 }
-.stat{
+.stat {
+  padding:16px;
   background:var(--dark);
   border-radius:12px;
-  padding:15px;
-  text-align:center;
+  border:1px solid var(--border);
 }
-.stat strong{
-  display:block;
-  color:var(--green);
-  font-size:29px;
-}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px;
-}
-.notice{
-  padding:13px;
-  border-left:5px solid var(--blue);
-  background:var(--dark);
-  border-radius:7px;
-  margin-top:13px;
-  white-space:pre-wrap;
-  overflow-wrap:anywhere;
-}
-.success{border-left-color:var(--green)}
-.alert{border-left-color:var(--gold)}
-.error{border-left-color:var(--red)}
-.tablewrap{overflow-x:auto}
-table{
-  border-collapse:collapse;
+.stat strong { display:block; font-size:25px; color:var(--green); }
+label { display:block; margin:10px 0 5px; color:var(--muted); }
+input,select,textarea {
   width:100%;
-  min-width:950px;
+  background:var(--dark);
+  color:var(--text);
+  border:1px solid var(--border);
+  border-radius:9px;
+  padding:12px;
+  font:inherit;
 }
-th,td{
-  padding:11px;
+textarea { min-height:110px; }
+button {
+  background:var(--green);
+  color:#041b16;
+  border:0;
+  padding:11px 16px;
+  border-radius:9px;
+  font-weight:700;
+  cursor:pointer;
+  margin:5px 5px 5px 0;
+}
+button.secondary { background:var(--blue); color:#061525; }
+button.warning { background:var(--gold); color:#302000; }
+button.danger { background:var(--red); color:#300b12; }
+button:disabled { opacity:.45; cursor:not-allowed; }
+button:focus-visible,input:focus-visible,select:focus-visible {
+  outline:2px solid var(--gold);
+  outline-offset:2px;
+}
+.table-wrap { overflow-x:auto; }
+table {
+  width:100%;
+  border-collapse:collapse;
+  min-width:970px;
+  font-size:13px;
+}
+th,td {
+  padding:12px 9px;
   border-bottom:1px solid var(--border);
   text-align:left;
   vertical-align:top;
 }
-th{background:#0a2037}
-tr:nth-child(even){background:#102039}
-small,.muted{color:var(--muted)}
-.tag{
+th { background:#203854; color:var(--gold); }
+tr:hover td { background:#1b3450; }
+.tag {
   display:inline-block;
-  padding:4px 8px;
-  border-radius:8px;
-  background:#124e3b;
-  color:#80ffd0;
+  padding:4px 9px;
+  border-radius:20px;
+  background:#1a3c38;
+  color:var(--green);
+  font-weight:700;
 }
-.star{color:var(--gold);white-space:nowrap}
-.good{color:var(--green)}
-.bad{color:var(--red)}
-pre{
+.tag.pending { background:#3a3321; color:var(--gold); }
+.tag.error { background:#48242e; color:var(--red); }
+.green { color:var(--green); }
+.gold { color:var(--gold); }
+.red { color:var(--red); }
+.muted { color:var(--muted); }
+.small { font-size:12px; }
+.notice {
+  border-left:4px solid var(--gold);
+  background:#292c32;
+  padding:12px;
+  border-radius:8px;
+  margin:12px 0;
+}
+.success {
+  border-left:4px solid var(--green);
+  background:#17352f;
+  padding:12px;
+  border-radius:8px;
+  margin:12px 0;
+}
+.errorbox {
+  border-left:4px solid var(--red);
+  background:#39222d;
+  padding:12px;
+  border-radius:8px;
+  margin:12px 0;
+}
+.engine {
+  background:var(--dark);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:15px;
+}
+.engine h3 { margin:0 0 8px; }
+details {
+  background:var(--dark);
+  padding:12px;
+  border-radius:10px;
+  margin:8px 0;
+}
+summary { cursor:pointer; font-weight:700; }
+pre {
   white-space:pre-wrap;
   overflow-wrap:anywhere;
-  background:var(--dark);
-  padding:13px;
-  border-radius:10px;
+  font-size:12px;
 }
-details{
-  margin:12px 0;
-  background:var(--dark);
-  border-radius:10px;
-  padding:12px;
-}
-summary{cursor:pointer;font-weight:700}
-footer{
+footer {
   text-align:center;
-  padding:28px;
+  padding:25px;
   color:var(--muted);
+  border-top:1px solid var(--border);
 }
-@media(max-width:650px){
-  .grid{grid-template-columns:1fr}
-  section{padding:15px}
-  .stats{gap:8px}
-  .stat{padding:11px}
-  .stat strong{font-size:25px}
+@media(max-width:600px) {
+  .container { padding:10px; }
+  .panel { padding:13px; }
+  button { width:100%; margin:5px 0; }
 }
 </style>
 </head>
@@ -168,154 +173,127 @@ footer{
 
 <header>
   <h1>🇸🇳🧠🔥 HIPPOFUSION X1000</h1>
-  <h2>INTELLIGENCE HIPPIQUE — M1 À M5</h2>
-  <p>Analyses indépendantes • Qualifications • FIGÉS • Audits</p>
-  <small>Version V5.0 — Application locale autonome</small>
+  <h2>M1 — M2 — M3 — M4 — M5</h2>
+  <p class="subtitle">
+    Intelligence hippique autonome, adaptative et évolutive
+  </p>
+  <span class="tag">Version HTML 4.0 — Interface opérationnelle</span>
 </header>
 
-<main>
+<main class="container">
 
-<section>
-  <h2>📊 Tableau de bord officiel</h2>
-  <div class="stats">
-    <div class="stat">
-      Analyses enregistrées
-      <strong id="nAnalyses">0</strong>
-    </div>
-    <div class="stat">
-      FIGÉS enregistrés
-      <strong id="nFiges">0</strong>
-    </div>
-    <div class="stat">
-      Courses étudiées
-      <strong id="nCourses">0</strong>
-    </div>
-    <div class="stat">
-      Moteurs actifs
-      <strong>5</strong>
-    </div>
+<section class="panel">
+  <h2>📊 Tableau de bord</h2>
+  <div class="grid">
+    <div class="stat">Courses chargées<strong id="statCourses">0</strong></div>
+    <div class="stat">Courses qualifiées<strong id="statQualified">0</strong></div>
+    <div class="stat">FIGÉS enregistrés<strong id="statFrozen">0</strong></div>
+    <div class="stat">Moteurs disponibles<strong>5</strong></div>
   </div>
-  <div id="status" class="notice">
-    Système prêt. Importez une course documentée.
-  </div>
+  <p class="small muted" id="clock"></p>
 </section>
 
-<section>
-  <h2>🏇 Identification de la course</h2>
+<section class="panel">
+  <h2>📡 Sources des données PMU</h2>
+  <p>
+    Importez des données structurées vérifiables. Aucune arrivée,
+    aucun partant et aucun pronostic ne sera inventé.
+  </p>
+
+  <label for="fileInput">Importer un fichier JSON</label>
+  <input type="file" id="fileInput" accept=".json,application/json">
+
+  <label for="dataUrl">Adresse d'un fichier JSON public</label>
+  <input type="url" id="dataUrl"
+    placeholder="https://exemple.fr/courses.json">
+
+  <button id="loadUrl" class="secondary">
+    Charger depuis l'URL
+  </button>
+  <button id="loadGithub" class="secondary">
+    Charger data/courses.json
+  </button>
+
+  <div id="sourceStatus" class="notice">
+    Aucune donnée chargée.
+  </div>
+
+  <details>
+    <summary>Format JSON accepté</summary>
+    <pre id="jsonExample"></pre>
+  </details>
+</section>
+
+<section class="panel">
+  <h2>🏇 Courses françaises</h2>
+
+  <label for="raceSelect">Sélectionner une course</label>
+  <select id="raceSelect">
+    <option value="">Aucune course disponible</option>
+  </select>
+
+  <div id="raceInfo" class="notice">
+    Importez des données pour commencer.
+  </div>
+
   <div class="grid">
     <div>
-      <label for="date">Date de course</label>
-      <input type="date" id="date">
+      <label for="raceDate">Date de référence</label>
+      <input type="date" id="raceDate">
     </div>
     <div>
-      <label for="heure">Heure du départ — Paris</label>
-      <input type="time" id="heure">
-    </div>
-    <div>
-      <label for="reunion">Réunion</label>
-      <input id="reunion" placeholder="R1">
-    </div>
-    <div>
-      <label for="course">Course</label>
-      <input id="course" placeholder="C1">
-    </div>
-    <div>
-      <label for="hippodrome">Hippodrome</label>
-      <input id="hippodrome">
-    </div>
-    <div>
-      <label for="discipline">Discipline</label>
-      <select id="discipline">
-        <option value="plat">Galop — plat</option>
-        <option value="trot">Trot</option>
-        <option value="obstacle">Obstacle</option>
+      <label for="qualification">Qualification minimale</label>
+      <select id="qualification">
+        <option value="4">★★★★ ou ★★★★★</option>
+        <option value="5">★★★★★ uniquement</option>
       </select>
     </div>
-    <div>
-      <label for="distance">Distance en mètres</label>
-      <input id="distance" type="number" min="1">
-    </div>
-    <div>
-      <label for="terrain">Terrain ou piste</label>
-      <input id="terrain" placeholder="Souple, PSF, piste...">
-    </div>
   </div>
-  <p class="muted">
-    Ces champs reflètent le JSON importé. Une modification
-    impose une nouvelle importation avant analyse ou FIGÉ.
-  </p>
-</section>
 
-<section>
-  <h2>📥 Importation des données hippiques</h2>
-  <p>
-    Importez un fichier JSON documenté ou collez son contenu.
-    Une URL déclarée n'est pas une preuve de vérification.
-  </p>
-  <label for="fichier">Fichier JSON</label>
-  <input type="file" id="fichier"
-         accept=".json,application/json">
-
-  <label for="jsonInput">Données JSON</label>
-  <textarea id="jsonInput"
-    placeholder='{"date":"2026-10-20","heure":"18:00","reunion":"R1","course":"C1","hippodrome":"Vincennes","discipline":"trot","distance":2700,"source":"https://...","chevaux":[...]}'></textarea>
-
-  <button class="secondary" onclick="chargerTexte()">
-    📥 Importer
-  </button>
-  <button class="secondary" onclick="exempleFormat()">
-    📋 Exemple de format
-  </button>
-
-  <div id="importInfo" class="notice">
-    Aucune course importée.
-  </div>
-</section>
-
-<section>
-  <h2>🔍 Étude cheval par cheval</h2>
-  <div class="tablewrap">
-    <table>
-      <thead>
-        <tr>
-          <th>N°</th>
-          <th>Cheval</th>
-          <th>Forme</th>
-          <th>Aptitude</th>
-          <th>Régularité</th>
-          <th>Fiabilité</th>
-          <th>Score moyen</th>
-        </tr>
-      </thead>
-      <tbody id="chevauxTable">
-        <tr><td colspan="7">Aucune donnée.</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="muted">
-    Notes de 0 à 100 fournies par l'importateur.
-    Elles ne représentent pas des probabilités de victoire.
-  </p>
-</section>
-
-<section>
-  <h2>🧠 Moteurs indépendants M1–M5</h2>
-  <p>
-    Chaque moteur possède une stratégie différente.
-    Les pondérations s'adaptent de manière déterministe
-    à la discipline et à certains écarts entre chevaux.
-  </p>
-
-  <button class="primary" onclick="analyser()">
+  <button id="analyze" class="secondary">
     🧠 Lancer les cinq moteurs
   </button>
+  <button id="freeze" class="warning">
+    🔒 FIGER avant départ
+  </button>
+  <button id="export" class="secondary">
+    📥 Exporter les FIGÉS
+  </button>
+</section>
 
-  <div id="analyseInfo" class="notice">
-    En attente d'une course.
+<section class="panel">
+  <h2>🧠 Les cinq moteurs indépendants</h2>
+  <div class="grid">
+    <div class="engine">
+      <h3 style="color:#55a9ff">🔵 M1 — Forme</h3>
+      <p>Régularité, dernières performances, dynamique.</p>
+    </div>
+    <div class="engine">
+      <h3 style="color:#24d493">🟢 M2 — Aptitudes</h3>
+      <p>Distance, terrain, discipline et parcours.</p>
+    </div>
+    <div class="engine">
+      <h3 style="color:#c4a1ff">🟣 M3 — Fiabilité</h3>
+      <p>Places, victoires, constance et risque.</p>
+    </div>
+    <div class="engine">
+      <h3 style="color:#ffd36a">🟠 M4 — Opposition</h3>
+      <p>Valeur, forme et résistance aux adversaires.</p>
+    </div>
+    <div class="engine">
+      <h3 style="color:#ff7887">🔴 M5 — Contre-expertise</h3>
+      <p>Détection des profils sous-estimés et des favoris fragiles.</p>
+    </div>
   </div>
+  <p class="small muted">
+    Chaque moteur calcule son propre classement. Les scores sont
+    heuristiques et ne constituent pas des probabilités de victoire.
+  </p>
+</section>
 
-  <h3>🇸🇳 Tableau officiel — huit colonnes</h3>
-  <div class="tablewrap">
+<section class="panel">
+  <h2>🏆 Tableau officiel — Huit colonnes</h2>
+  <div class="table-wrap">
     <table>
       <thead>
         <tr>
@@ -329,207 +307,185 @@ footer{
           <th>Heure Paris</th>
         </tr>
       </thead>
-      <tbody id="moteursTable">
-        <tr>
-          <td colspan="8">Aucune analyse.</td>
-        </tr>
+      <tbody id="officialTable">
+        <tr><td colspan="8">En attente d'analyse.</td></tr>
       </tbody>
     </table>
   </div>
+</section>
 
-  <details>
-    <summary>📘 Stratégies des moteurs</summary>
-    <p><b>🔵 M1 :</b> priorité à la forme récente.</p>
-    <p><b>🟢 M2 :</b> priorité à l'aptitude.</p>
-    <p><b>🟣 M3 :</b> priorité à la régularité.</p>
-    <p><b>🟠 M4 :</b> priorité à la fiabilité.</p>
-    <p><b>🔴 M5 :</b> équilibre et cohérence globale.</p>
-    <p class="muted">
-      Les ajustements restent des règles heuristiques,
-      non un modèle statistique entraîné et validé.
+<section class="panel">
+  <h2>🔎 Contre-expertise des chevaux</h2>
+  <div id="horseAnalysis" class="muted">
+    Aucun cheval analysé.
+  </div>
+</section>
+
+<section class="panel">
+  <h2>🔒 Archives des FIGÉS avant départ</h2>
+  <p>
+    Un FIGÉ conserve les choix réellement produits avant le départ.
+    Il n'est jamais recalculé à partir de l'arrivée.
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Course</th>
+          <th>Moteur</th>
+          <th>Choix</th>
+          <th>Pari</th>
+          <th>Horodatage</th>
+          <th>Statut</th>
+        </tr>
+      </thead>
+      <tbody id="frozenTable">
+        <tr><td colspan="6">Aucun FIGÉ.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>📋 Audit et traçabilité</h2>
+  <div id="auditLog" class="muted">Aucun événement.</div>
+  <button id="exportAudit" class="secondary">
+    Exporter l'audit
+  </button>
+  <button id="clearLocal" class="danger">
+    Effacer les données locales
+  </button>
+</section>
+
+<section class="panel">
+  <h2>📖 Règles officielles</h2>
+  <details open>
+    <summary>Autonomie des moteurs</summary>
+    <p>
+      Les moteurs M1 à M5 utilisent des critères distincts.
+      Aucun moteur n'est obligé de reproduire le classement
+      d'un autre moteur.
     </p>
   </details>
-</section>
-
-<section>
-  <h2>🔒 FIGÉS avant départ</h2>
-  <p>
-    Le FIGÉ conserve une photographie des données
-    et des décisions M1–M5. L'application refuse
-    un nouveau FIGÉ lorsque le départ est atteint.
-  </p>
-  <button class="warning" id="figerBtn" onclick="figer()">
-    🔒 FIGER les cinq moteurs
-  </button>
-  <div id="figeInfo" class="notice">
-    Aucun FIGÉ enregistré pour la course active.
-  </div>
-</section>
-
-<section>
-  <h2>🏁 Arrivée officielle et audit</h2>
-
-  <label for="arrivee">Ordre d'arrivée des numéros</label>
-  <input id="arrivee" placeholder="7-1-6-4-2">
-
-  <label for="sourceArrivee">URL de la source du résultat</label>
-  <input id="sourceArrivee"
-         placeholder="https://...">
-
-  <button class="secondary" onclick="auditer()">
-    📊 Auditer le FIGÉ
-  </button>
-
-  <div id="auditInfo" class="notice">
-    Aucun audit.
-  </div>
-</section>
-
-<section>
-  <h2>📚 Historique et sauvegarde</h2>
-  <button class="secondary" onclick="exporter()">
-    💾 Exporter les archives JSON
-  </button>
-  <button class="secondary" onclick="importerArchives()">
-    📂 Importer des archives
-  </button>
-  <input type="file" id="archiveFile"
-         accept=".json,application/json"
-         style="display:none">
-  <button class="secondary" onclick="afficherHistorique()">
-    🔄 Actualiser
-  </button>
-  <div id="historique"></div>
-</section>
-
-<section>
-  <h2>🛡️ Transparence et sécurité</h2>
-  <p>
-    Les résultats des moteurs sont des classements
-    heuristiques. Aucun gain ni succès n'est garanti.
-  </p>
-  <p>
-    Les données importées et les arrivées déclarées
-    ne sont pas vérifiées automatiquement auprès du PMU.
-    Les FIGÉS sont horodatés par l'appareil et conservés
-    dans le navigateur. Leur empreinte SHA-256 permet
-    de détecter certaines modifications, mais ne constitue
-    pas une preuve indépendante d'antériorité.
-  </p>
-  <p>
-    Une exécution automatique permanente, la collecte
-    officielle et les FIGÉS horodatés par serveur
-    nécessitent une infrastructure complémentaire.
-  </p>
+  <details>
+    <summary>Qualification des courses</summary>
+    <p>
+      Les courses reçoivent une qualification de zéro à cinq étoiles
+      selon la disponibilité et la qualité des données.
+      Seules les courses de quatre ou cinq étoiles sont proposées
+      à la sélection par défaut.
+    </p>
+  </details>
+  <details>
+    <summary>FIGÉ avant départ</summary>
+    <p>
+      Un FIGÉ exige une heure de départ future et un classement
+      calculé sur les données disponibles. Les FIGÉS sont horodatés
+      en temps réel, sans reconstruction après l'arrivée.
+    </p>
+  </details>
+  <details>
+    <summary>Limites du système</summary>
+    <p>
+      Le stockage local n'est pas une preuve indépendante
+      d'antériorité. Une archive externe horodatée, telle qu'un
+      journal GitHub Actions, est nécessaire pour un audit renforcé.
+      Le navigateur ne réalise pas d'analyse lorsque la page est
+      fermée. Aucun pari n'est exécuté automatiquement.
+    </p>
+  </details>
 </section>
 
 </main>
 
 <footer>
-  🇸🇳🧠🔥 HIPPOFUSION X1000 — M1 à M5
-  <p>Version V5.0 • Intelligence hippique expérimentale</p>
+  🇸🇳🧠🔥 HIPPOFUSION X1000 — M1 à M5<br>
+  Analyse hippique expérimentale — Données vérifiables<br>
+  Aucun résultat garanti. Jouer comporte un risque financier.
 </footer>
 
 <script>
 "use strict";
 
-const VERSION="5.0";
-const KEY="hippofusion_x1000_v5";
-const $=id=>document.getElementById(id);
+/*
+ HIPPOFUSION X1000 — M1 à M5
+ Application statique GitHub Pages.
 
-let courseData=null;
-let analyseCourante=null;
-let archives=chargerArchives();
-let operationFige=false;
+ Entrées:
+ - JSON importé
+ - URL JSON publique
+ - data/courses.json
 
-function copier(obj){
-  return JSON.parse(JSON.stringify(obj));
+ Sorties:
+ - cinq analyses indépendantes
+ - tableau officiel huit colonnes
+ - FIGÉS horodatés avant départ
+ - audit local exportable
+
+ IMPORTANT:
+ Les notes numériques sont des indicateurs heuristiques,
+ pas des probabilités.
+*/
+
+const PARIS_TZ = "Europe/Paris";
+const STORAGE_FROZEN = "hippofusion_v4_frozen";
+const STORAGE_AUDIT = "hippofusion_v4_audit";
+
+const $ = id => document.getElementById(id);
+
+let races = [];
+let selectedRace = null;
+let currentAnalysis = null;
+let frozen = readLocal(STORAGE_FROZEN, []);
+let audits = readLocal(STORAGE_AUDIT, []);
+
+function readLocal(key, fallback) {
+  try {
+    const value = JSON.parse(localStorage.getItem(key));
+    return Array.isArray(value) ? value : fallback;
+  } catch {
+    return fallback;
+  }
 }
 
-function parisNow(){
-  return new Date().toLocaleString("fr-FR",{
-    timeZone:"Europe/Paris",
-    hour12:false
-  });
+function saveLocal(key, value) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+    return true;
+  } catch {
+    return false;
+  }
 }
 
-function dateParis(){
-  return new Intl.DateTimeFormat("en-CA",{
-    timeZone:"Europe/Paris",
+function nowParis() {
+  return new Intl.DateTimeFormat("fr-FR", {
+    timeZone: PARIS_TZ,
+    dateStyle:"short",
+    timeStyle:"medium"
+  }).format(new Date());
+}
+
+function parisDate() {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone:PARIS_TZ,
     year:"numeric",
     month:"2-digit",
     day:"2-digit"
   }).format(new Date());
 }
 
-function dateValide(d){
-  if(!/^\d{4}-\d{2}-\d{2}$/.test(d))return false;
-  const x=new Date(d+"T12:00:00Z");
-  return Number.isFinite(x.getTime()) &&
-    x.toISOString().slice(0,10)===d;
+function formatParis(value) {
+  const date = new Date(value);
+  if (!Number.isFinite(date.getTime())) return "Date invalide";
+  return new Intl.DateTimeFormat("fr-FR", {
+    timeZone:PARIS_TZ,
+    dateStyle:"short",
+    timeStyle:"short"
+  }).format(date);
 }
 
-function heureValide(h){
-  if(!/^\d{2}:\d{2}$/.test(h))return false;
-  const [hh,mm]=h.split(":").map(Number);
-  return hh>=0&&hh<=23&&mm>=0&&mm<=59;
-}
-
-const parisFormatter=new Intl.DateTimeFormat("en-GB",{
-  timeZone:"Europe/Paris",
-  year:"numeric",
-  month:"2-digit",
-  day:"2-digit",
-  hour:"2-digit",
-  minute:"2-digit",
-  second:"2-digit",
-  hourCycle:"h23"
-});
-
-function parisParts(timestamp){
-  const p={};
-  parisFormatter.formatToParts(new Date(timestamp))
-    .forEach(x=>p[x.type]=x.value);
-  return p;
-}
-
-function departTimestamp(d,h){
-  if(!dateValide(d)||!heureValide(h)){
-    throw Error("Date ou heure invalide.");
-  }
-
-  const cible=d+"T"+h;
-  const base=Date.parse(cible+":00Z");
-  const candidats=[];
-
-  // Couvre les décalages CET et CEST.
-  for(const offset of [1,2]){
-    const t=base-offset*3600000;
-    const p=parisParts(t);
-    const local=
-      p.year+"-"+p.month+"-"+p.day+
-      "T"+p.hour+":"+p.minute;
-    if(local===cible)candidats.push(t);
-  }
-
-  if(candidats.length===0){
-    throw Error(
-      "Heure inexistante en Europe/Paris."
-    );
-  }
-
-  if(candidats.length>1){
-    throw Error(
-      "Heure ambiguë lors du changement d'heure : "+
-      "précisez une heure non ambiguë."
-    );
-  }
-
-  return candidats[0];
-}
-
-function echapper(s){
-  return String(s??"").replace(/[&<>"']/g,c=>({
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, c => ({
     "&":"&amp;",
     "<":"&lt;",
     ">":"&gt;",
@@ -538,976 +494,995 @@ function echapper(s){
   })[c]);
 }
 
-function message(id,texte,type=""){
-  const e=$(id);
-  e.textContent=texte;
-  e.className="notice "+type;
-}
-
-function chargerArchives(){
-  try{
-    const a=JSON.parse(localStorage.getItem(KEY)||"[]");
-    return Array.isArray(a)?a:[];
-  }catch{
-    return [];
+function number(value, fallback=0) {
+  if (value === null || value === undefined || value === "") {
+    return fallback;
   }
+  const n = Number(value);
+  return Number.isFinite(n) ? n : fallback;
 }
 
-function sauvegarder(){
-  try{
-    localStorage.setItem(KEY,JSON.stringify(archives));
-    return true;
-  }catch(e){
-    message(
-      "status",
-      "Sauvegarde impossible : "+e.message,
-      "error"
-    );
-    return false;
+function clamp(value, min=0, max=100) {
+  return Math.min(max, Math.max(min, value));
+}
+
+function avg(values, fallback=50) {
+  const nums = values.filter(Number.isFinite);
+  if (!nums.length) return fallback;
+  return nums.reduce((a,b)=>a+b,0)/nums.length;
+}
+
+function hashString(value) {
+  let hash=2166136261;
+  for (const char of String(value)) {
+    hash ^= char.charCodeAt(0);
+    hash = Math.imul(hash,16777619);
   }
+  return (hash>>>0).toString(16).padStart(8,"0");
 }
 
-function identite(c){
-  return [
-    c.date,c.reunion,c.course,c.hippodrome
-  ].map(x=>String(x).trim().toUpperCase())
-   .join("|");
+function audit(action, details={}) {
+  const item = {
+    at:new Date().toISOString(),
+    action,
+    details
+  };
+  audits.push(item);
+  if (audits.length>2000) audits=audits.slice(-2000);
+  saveLocal(STORAGE_AUDIT,audits);
+  renderAudit();
 }
 
-function mettreAJour(){
-  $("nAnalyses").textContent=
-    archives.filter(x=>x.type==="analyse").length;
-
-  $("nFiges").textContent=
-    archives.filter(x=>x.type==="fige").length;
-
-  $("nCourses").textContent=
-    new Set(
-      archives.filter(x=>x.type==="analyse")
-        .map(x=>x.courseId)
-    ).size;
+function setStatus(message, type="notice") {
+  const element=$("sourceStatus");
+  element.className=type;
+  element.textContent=message;
 }
 
-function note(v,nom){
-  if(v===null||v===undefined||v===""){
-    throw Error("Note manquante : "+nom);
+function downloadJSON(filename, data) {
+  const blob=new Blob(
+    [JSON.stringify(data,null,2)],
+    {type:"application/json"}
+  );
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;
+  a.download=filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+
+/* ==========================
+   NORMALISATION DES DONNÉES
+   ========================== */
+
+function normalizeHorse(raw) {
+  if (!raw || typeof raw!=="object") {
+    throw new Error("Cheval invalide.");
   }
-  const n=Number(v);
-  if(!Number.isFinite(n)||n<0||n>100){
-    throw Error("Note invalide : "+nom+" (0–100).");
-  }
-  return n;
-}
 
-function normaliser(d){
-  if(!d||typeof d!=="object"||Array.isArray(d)){
-    throw Error("JSON de course invalide.");
+  const numero=Number(raw.numero);
+  if (!Number.isInteger(numero) || numero<=0) {
+    throw new Error("Numéro de cheval invalide.");
   }
 
-  const obligatoires=[
-    "date","heure","reunion","course",
-    "hippodrome","discipline","distance","source"
+  if (!String(raw.nom??"").trim()) {
+    throw new Error("Nom de cheval manquant.");
+  }
+
+  const performances=Array.isArray(raw.performances)
+    ? raw.performances.map(Number).filter(
+        n=>Number.isInteger(n)&&n>=1&&n<=30
+      ).slice(0,10)
+    : [];
+
+  const metrics=[
+    "forme","distance","terrain","parcours",
+    "regularite","fiabilite","valeur","opposition"
   ];
 
-  for(const k of obligatoires){
-    if(d[k]===undefined||d[k]===null||
-       String(d[k]).trim()===""){
-      throw Error("Champ manquant : "+k);
+  const horse={
+    numero,
+    nom:String(raw.nom).trim(),
+    nonPartant:raw.nonPartant===true,
+    performances,
+    cote:raw.cote==null?null:number(raw.cote,null),
+    metrics:{}
+  };
+
+  for (const key of metrics) {
+    const value=raw[key];
+    horse.metrics[key]=
+      value===null || value===undefined || value===""
+        ? null
+        : clamp(number(value));
+  }
+
+  return horse;
+}
+
+function normalizeRace(raw) {
+  if (!raw || typeof raw!=="object") {
+    throw new Error("Course invalide.");
+  }
+
+  const required=["id","hippodrome","depart","chevaux"];
+  for (const key of required) {
+    if (raw[key]===undefined || raw[key]===null) {
+      throw new Error("Champ obligatoire absent : "+key);
     }
   }
 
-  departTimestamp(d.date,d.heure);
-
-  if(!["trot","plat","obstacle"].includes(d.discipline)){
-    throw Error("Discipline inconnue.");
+  if (!Array.isArray(raw.chevaux)) {
+    throw new Error("Liste des chevaux invalide.");
   }
 
-  const distance=Number(d.distance);
-  if(!Number.isFinite(distance)||
-     distance<400||distance>10000){
-    throw Error("Distance hors limites acceptées.");
+  const start=new Date(raw.depart);
+  if (!Number.isFinite(start.getTime())) {
+    throw new Error(
+      "Départ invalide : utilisez une date ISO avec fuseau."
+    );
   }
 
-  if(!Array.isArray(d.chevaux)||d.chevaux.length<2){
-    throw Error("Au moins deux chevaux requis.");
+  const horses=raw.chevaux.map(normalizeHorse);
+  const ids=horses.map(h=>h.numero);
+
+  if (new Set(ids).size!==ids.length) {
+    throw new Error("Numéros de chevaux en double.");
   }
 
-  if(d.chevaux.length>100){
-    throw Error("Nombre de chevaux excessif.");
+  const race={
+    id:String(raw.id),
+    reunion:String(raw.reunion??""),
+    course:String(raw.course??""),
+    hippodrome:String(raw.hippodrome),
+    depart:start.toISOString(),
+    discipline:String(raw.discipline??""),
+    distance:number(raw.distance),
+    terrain:String(raw.terrain??""),
+    source:String(raw.source??"non précisée"),
+    sourceVerifiee:raw.sourceVerifiee===true,
+    chevaux:horses
+  };
+
+  race.fingerprint=hashString(JSON.stringify(race));
+  return race;
+}
+
+function normalizePayload(payload) {
+  const list=Array.isArray(payload)
+    ? payload
+    : payload && Array.isArray(payload.courses)
+      ? payload.courses
+      : null;
+
+  if (!list) {
+    throw new Error(
+      'JSON attendu : {"courses":[...]}'
+    );
   }
 
-  const nums=new Set();
+  const normalized=list.map(normalizeRace);
+  const ids=normalized.map(r=>r.id);
 
-  const chevaux=d.chevaux.map(h=>{
-    if(!h||typeof h!=="object"){
-      throw Error("Fiche cheval invalide.");
+  if (new Set(ids).size!==ids.length) {
+    throw new Error("Identifiants de courses en double.");
+  }
+
+  return normalized;
+}
+
+/* ==========================
+   QUALIFICATION DES COURSES
+   ========================== */
+
+function qualityScore(race) {
+  const starters=race.chevaux.filter(h=>!h.nonPartant);
+  if (starters.length<2) {
+    return {stars:0,coverage:0,reason:"Partants insuffisants"};
+  }
+
+  const keys=[
+    "forme","distance","terrain","parcours",
+    "regularite","fiabilite","valeur","opposition"
+  ];
+
+  const total=starters.length*keys.length;
+  let present=0;
+
+  for (const horse of starters) {
+    for (const key of keys) {
+      if (horse.metrics[key]!==null) present++;
     }
+  }
 
-    const numero=Number(h.numero);
-    if(!Number.isInteger(numero)||numero<=0||
-       nums.has(numero)){
-      throw Error("Numéro invalide ou répété.");
-    }
-    nums.add(numero);
+  const coverage=total?present/total:0;
 
-    if(!h.nom||!String(h.nom).trim()){
-      throw Error("Nom de cheval manquant.");
-    }
-
-    return {
-      numero,
-      nom:String(h.nom).trim(),
-      forme:note(h.forme,"forme"),
-      aptitude:note(h.aptitude,"aptitude"),
-      regularite:note(h.regularite,"regularite"),
-      fiabilite:note(h.fiabilite,"fiabilite"),
-      nonPartant:h.nonPartant===true
-    };
-  });
+  let stars=0;
+  if (coverage>=.20) stars=1;
+  if (coverage>=.40) stars=2;
+  if (coverage>=.60) stars=3;
+  if (coverage>=.80) stars=4;
+  if (coverage>=.95 && race.sourceVerifiee) stars=5;
 
   return {
-    date:d.date,
-    heure:d.heure,
-    reunion:String(d.reunion).trim(),
-    course:String(d.course).trim(),
-    hippodrome:String(d.hippodrome).trim(),
-    discipline:d.discipline,
-    distance,
-    terrain:String(d.terrain||"Non renseigné"),
-    source:String(d.source).trim(),
-    chevaux
+    stars,
+    coverage,
+    reason:race.sourceVerifiee
+      ?"Source déclarée vérifiée"
+      :"Source non vérifiée indépendamment"
   };
 }
 
-function chargerTexte(){
-  try{
-    const d=JSON.parse($("jsonInput").value);
-    const c=normaliser(d);
+function starsText(n) {
+  return "★".repeat(n)+"☆".repeat(5-n);
+}
 
-    courseData=c;
-    analyseCourante=null;
+/* ==========================
+   CINQ MOTEURS INDÉPENDANTS
+   ========================== */
 
-    for(const k of [
-      "date","heure","reunion","course",
-      "hippodrome","discipline","distance","terrain"
-    ]){
-      $(k).value=c[k];
+function performanceScore(horse) {
+  const p=horse.performances;
+  if (!p.length) return null;
+
+  const scores=p.map((place,index)=>{
+    const weight=1/(1+index*.22);
+    return {
+      value:clamp(105-place*8),
+      weight
+    };
+  });
+
+  const sum=scores.reduce((a,b)=>a+b.value*b.weight,0);
+  const weights=scores.reduce((a,b)=>a+b.weight,0);
+  return sum/weights;
+}
+
+function metric(horse,key) {
+  return horse.metrics[key];
+}
+
+function scoreM1(h) {
+  const perf=performanceScore(h);
+  return avg([
+    metric(h,"forme"),
+    metric(h,"forme"),
+    perf,
+    perf,
+    metric(h,"regularite")
+  ]);
+}
+
+function scoreM2(h) {
+  return avg([
+    metric(h,"distance"),
+    metric(h,"distance"),
+    metric(h,"terrain"),
+    metric(h,"parcours"),
+    metric(h,"forme")
+  ]);
+}
+
+function scoreM3(h) {
+  const p=h.performances;
+  const top3=p.length
+    ? 100*p.filter(x=>x<=3).length/p.length
+    : null;
+
+  return avg([
+    metric(h,"fiabilite"),
+    metric(h,"fiabilite"),
+    metric(h,"regularite"),
+    top3
+  ]);
+}
+
+function scoreM4(h) {
+  return avg([
+    metric(h,"valeur"),
+    metric(h,"valeur"),
+    metric(h,"opposition"),
+    metric(h,"forme"),
+    performanceScore(h)
+  ]);
+}
+
+function scoreM5(h) {
+  const base=avg([
+    metric(h,"forme"),
+    metric(h,"distance"),
+    metric(h,"valeur"),
+    metric(h,"opposition")
+  ]);
+
+  const cote=h.cote;
+  const outsider=cote!==null && cote>=8 && cote<=35
+    ? 7
+    : 0;
+
+  const fragility=avg([
+    metric(h,"fiabilite"),
+    metric(h,"regularite")
+  ]);
+
+  return clamp(base+outsider-(100-fragility)*.15);
+}
+
+const ENGINES=[
+  {id:"M1",name:"🔵 M1",score:scoreM1},
+  {id:"M2",name:"🟢 M2",score:scoreM2},
+  {id:"M3",name:"🟣 M3",score:scoreM3},
+  {id:"M4",name:"🟠 M4",score:scoreM4},
+  {id:"M5",name:"🔴 M5",score:scoreM5}
+];
+
+function rankEngine(engine,race) {
+  const starters=race.chevaux.filter(h=>!h.nonPartant);
+
+  const ranking=starters.map(h=>({
+    numero:h.numero,
+    nom:h.nom,
+    score:clamp(engine.score(h))
+  }));
+
+  ranking.sort((a,b)=>
+    b.score-a.score || a.numero-b.numero
+  );
+
+  const first=ranking[0];
+  const second=ranking[1];
+  const margin=first.score-second.score;
+
+  let bet="Aucun pari";
+  if (first.score>=65 && margin>=7) {
+    bet="Simple gagnant "+first.numero;
+  } else if (first.score>=58) {
+    bet="Simple placé "+first.numero;
+  }
+
+  return {
+    engine:engine.id,
+    engineName:engine.name,
+    gagnant:first,
+    place:second,
+    ordre:ranking.slice(0,5).map(h=>h.numero),
+    ranking,
+    pari:bet,
+    marge:Number(margin.toFixed(2))
+  };
+}
+
+function analyzeRace(race) {
+  const quality=qualityScore(race);
+  const threshold=Number($("qualification").value);
+
+  if (quality.stars<threshold) {
+    throw new Error(
+      "Course non qualifiée : "+
+      starsText(quality.stars)+
+      ". Données insuffisantes pour le seuil sélectionné."
+    );
+  }
+
+  if (Date.now()>=new Date(race.depart).getTime()) {
+    throw new Error(
+      "Départ déjà atteint : aucune nouvelle analyse pré-départ."
+    );
+  }
+
+  const results=ENGINES.map(e=>rankEngine(e,race));
+
+  return {
+    raceId:race.id,
+    raceFingerprint:race.fingerprint,
+    generatedAt:new Date().toISOString(),
+    quality,
+    results
+  };
+}
+
+/* ==========================
+   AFFICHAGE
+   ========================== */
+
+function renderStats() {
+  $("statCourses").textContent=races.length;
+  $("statQualified").textContent=races.filter(
+    r=>qualityScore(r).stars>=Number($("qualification").value)
+  ).length;
+  $("statFrozen").textContent=frozen.length;
+}
+
+function renderRaceSelect() {
+  const select=$("raceSelect");
+  select.replaceChildren();
+
+  const option=document.createElement("option");
+  option.value="";
+  option.textContent="Sélectionner une course";
+  select.appendChild(option);
+
+  const date=$("raceDate").value;
+
+  for (const race of races) {
+    if (date && parisDateOf(race.depart)!==date) continue;
+
+    const q=qualityScore(race);
+    const opt=document.createElement("option");
+    opt.value=race.id;
+    opt.textContent=
+      race.reunion+" "+race.course+" — "+
+      race.hippodrome+" — "+
+      formatParis(race.depart)+" — "+
+      starsText(q.stars);
+
+    select.appendChild(opt);
+  }
+
+  selectedRace=null;
+  currentAnalysis=null;
+  renderOfficialTable();
+  renderRaceInfo();
+}
+
+function parisDateOf(value) {
+  return new Intl.DateTimeFormat("en-CA",{
+    timeZone:PARIS_TZ,
+    year:"numeric",
+    month:"2-digit",
+    day:"2-digit"
+  }).format(new Date(value));
+}
+
+function renderRaceInfo() {
+  const target=$("raceInfo");
+
+  if (!selectedRace) {
+    target.textContent="Sélectionnez une course.";
+    return;
+  }
+
+  const race=selectedRace;
+  const q=qualityScore(race);
+  const starters=race.chevaux.filter(h=>!h.nonPartant);
+
+  target.textContent=
+    race.hippodrome+" | "+
+    race.reunion+" "+race.course+" | "+
+    race.discipline+" | "+
+    race.distance+" m | "+
+    starters.length+" partants | "+
+    "Départ : "+formatParis(race.depart)+" | "+
+    "Qualification : "+starsText(q.stars)+" | "+
+    "Couverture : "+Math.round(q.coverage*100)+" % | "+
+    q.reason;
+}
+
+function renderOfficialTable() {
+  const tbody=$("officialTable");
+  tbody.replaceChildren();
+
+  if (!currentAnalysis) {
+    const tr=document.createElement("tr");
+    const td=document.createElement("td");
+    td.colSpan=8;
+    td.textContent="En attente d'analyse.";
+    tr.appendChild(td);
+    tbody.appendChild(tr);
+    $("horseAnalysis").textContent="Aucun cheval analysé.";
+    return;
+  }
+
+  const analysis=currentAnalysis;
+  const race=selectedRace;
+  const locked=frozen.filter(f=>
+    f.raceId===race.id &&
+    f.raceFingerprint===race.fingerprint
+  );
+
+  for (const result of analysis.results) {
+    const item=locked.find(f=>f.engine===result.engine);
+    const cells=[
+      result.engineName,
+      result.gagnant.numero+" "+result.gagnant.nom,
+      result.place.numero+" "+result.place.nom,
+      result.ordre.join("-"),
+      result.pari,
+      starsText(analysis.quality.stars),
+      item?"🔒 FIGÉ":"Provisoire",
+      item?formatParis(item.frozenAt):formatParis(analysis.generatedAt)
+    ];
+
+    const tr=document.createElement("tr");
+    for (const value of cells) {
+      const td=document.createElement("td");
+      td.textContent=value;
+      tr.appendChild(td);
+    }
+    tbody.appendChild(tr);
+  }
+
+  renderHorseAnalysis();
+}
+
+function renderHorseAnalysis() {
+  const target=$("horseAnalysis");
+  target.replaceChildren();
+
+  if (!currentAnalysis) return;
+
+  const race=selectedRace;
+
+  for (const horse of race.chevaux) {
+    const details=document.createElement("details");
+    const summary=document.createElement("summary");
+
+    summary.textContent=
+      horse.numero+" — "+horse.nom+
+      (horse.nonPartant?" (Non-partant)":"");
+
+    details.appendChild(summary);
+
+    const p=document.createElement("p");
+
+    if (horse.nonPartant) {
+      p.textContent="Exclu des classements.";
+    } else {
+      const scores=currentAnalysis.results.map(r=>{
+        const found=r.ranking.find(
+          h=>h.numero===horse.numero
+        );
+        return r.engine+": "+(
+          found?found.score.toFixed(1):"N/D"
+        );
+      });
+
+      p.textContent=
+        "Scores heuristiques : "+scores.join(" | ")+
+        ". Performances : "+
+        (horse.performances.join("-")||"indisponibles")+
+        ". Cote : "+
+        (horse.cote===null?"indisponible":horse.cote);
     }
 
-    afficherChevaux();
-
-    $("moteursTable").innerHTML=
-      '<tr><td colspan="8">'+
-      'Lancez une nouvelle analyse.</td></tr>';
-
-    message(
-      "importInfo",
-      "Course importée : "+c.chevaux.length+
-      " chevaux.\nSource déclarée : "+c.source+
-      "\nSource non vérifiée automatiquement.",
-      "success"
-    );
-
-    message(
-      "status",
-      "Données importées. Analyse disponible.",
-      "success"
-    );
-
-  }catch(e){
-    courseData=null;
-    analyseCourante=null;
-    message("importInfo","Erreur : "+e.message,"error");
+    details.appendChild(p);
+    target.appendChild(details);
   }
 }
 
-$("fichier").addEventListener("change",async e=>{
-  const f=e.target.files[0];
-  if(!f)return;
+function renderFrozen() {
+  const tbody=$("frozenTable");
+  tbody.replaceChildren();
 
-  try{
-    if(f.size>2*1024*1024){
-      throw Error("Fichier trop volumineux (maximum 2 Mo).");
+  if (!frozen.length) {
+    const tr=document.createElement("tr");
+    const td=document.createElement("td");
+    td.colSpan=6;
+    td.textContent="Aucun FIGÉ enregistré.";
+    tr.appendChild(td);
+    tbody.appendChild(tr);
+    return;
+  }
+
+  const ordered=[...frozen].sort(
+    (a,b)=>b.frozenAt.localeCompare(a.frozenAt)
+  );
+
+  for (const item of ordered) {
+    const tr=document.createElement("tr");
+    const values=[
+      item.raceLabel,
+      item.engine,
+      item.ordre.join("-"),
+      item.pari,
+      formatParis(item.frozenAt),
+      "🔒 FIGÉ local"
+    ];
+
+    for (const value of values) {
+      const td=document.createElement("td");
+      td.textContent=value;
+      tr.appendChild(td);
     }
-    $("jsonInput").value=await f.text();
-    chargerTexte();
-  }catch(err){
-    message("importInfo",err.message,"error");
+
+    tbody.appendChild(tr);
+  }
+}
+
+function renderAudit() {
+  const target=$("auditLog");
+  target.replaceChildren();
+
+  if (!audits.length) {
+    target.textContent="Aucun événement.";
+    return;
+  }
+
+  for (const event of [...audits].reverse().slice(0,30)) {
+    const p=document.createElement("p");
+    p.className="small";
+    p.textContent=
+      formatParis(event.at)+" — "+
+      event.action+" — "+
+      JSON.stringify(event.details);
+    target.appendChild(p);
+  }
+}
+
+/* ==========================
+   CHARGEMENT DES DONNÉES
+   ========================== */
+
+function loadPayload(payload,source) {
+  const normalized=normalizePayload(payload);
+  races=normalized;
+  $("raceDate").value="";
+  renderRaceSelect();
+  renderStats();
+
+  setStatus(
+    normalized.length+" course(s) chargée(s) depuis "+source,
+    "success"
+  );
+
+  audit("DONNEES_CHARGEES",{
+    source,
+    courses:normalized.length
+  });
+}
+
+async function loadFromURL(url) {
+  if (!url) throw new Error("Adresse manquante.");
+
+  const parsed=new URL(url,location.href);
+  if (!["https:","http:"].includes(parsed.protocol)) {
+    throw new Error("Protocole non autorisé.");
+  }
+
+  setStatus("Chargement en cours...");
+
+  const response=await fetch(parsed.href,{
+    cache:"no-store"
+  });
+
+  if (!response.ok) {
+    throw new Error("Erreur HTTP "+response.status);
+  }
+
+  const payload=await response.json();
+  loadPayload(payload,parsed.href);
+}
+
+$("fileInput").addEventListener("change",async event=>{
+  const file=event.target.files[0];
+  if (!file) return;
+
+  try {
+    if (file.size>5*1024*1024) {
+      throw new Error("Fichier supérieur à 5 Mo.");
+    }
+    const text=await file.text();
+    loadPayload(JSON.parse(text),file.name);
+  } catch(error) {
+    setStatus(error.message,"errorbox");
   }
 });
 
-function exempleFormat(){
-  const exemple={
-    date:dateParis(),
-    heure:"18:00",
-    reunion:"R1",
-    course:"C1",
-    hippodrome:"EXEMPLE NON OFFICIEL",
-    discipline:"trot",
-    distance:2700,
-    terrain:"Piste",
-    source:"EXEMPLE FICTIF — NE PAS PARIER",
-    chevaux:[
-      {
-        numero:1,nom:"CHEVAL EXEMPLE A",
-        forme:75,aptitude:65,
-        regularite:80,fiabilite:70
-      },
-      {
-        numero:2,nom:"CHEVAL EXEMPLE B",
-        forme:60,aptitude:85,
-        regularite:70,fiabilite:80
-      },
-      {
-        numero:3,nom:"CHEVAL EXEMPLE C",
-        forme:70,aptitude:75,
-        regularite:65,fiabilite:75
-      }
-    ]
-  };
-
-  $("jsonInput").value=JSON.stringify(exemple,null,2);
-
-  message(
-    "importInfo",
-    "Exemple fictif affiché. Ne pas utiliser pour parier.",
-    "alert"
-  );
-}
-
-function afficherChevaux(){
-  if(!courseData)return;
-
-  $("chevauxTable").innerHTML=
-    courseData.chevaux.map(h=>{
-      const score=(
-        h.forme+h.aptitude+
-        h.regularite+h.fiabilite
-      )/4;
-
-      return `<tr>
-        <td>${h.numero}</td>
-        <td>${echapper(h.nom)}
-          ${h.nonPartant?"(NP)":""}</td>
-        <td>${h.forme}</td>
-        <td>${h.aptitude}</td>
-        <td>${h.regularite}</td>
-        <td>${h.fiabilite}</td>
-        <td>${score.toFixed(1)}</td>
-      </tr>`;
-    }).join("");
-}
-
-const moteurs=[
-  {
-    id:"M1",icone:"🔵",nom:"Forme",
-    poids:[.45,.20,.20,.15]
-  },
-  {
-    id:"M2",icone:"🟢",nom:"Aptitude",
-    poids:[.15,.45,.20,.20]
-  },
-  {
-    id:"M3",icone:"🟣",nom:"Régularité",
-    poids:[.20,.15,.45,.20]
-  },
-  {
-    id:"M4",icone:"🟠",nom:"Fiabilité",
-    poids:[.15,.20,.20,.45]
-  },
-  {
-    id:"M5",icone:"🔴",nom:"Équilibre",
-    poids:[.25,.25,.25,.25]
+$("loadUrl").addEventListener("click",async()=>{
+  try {
+    await loadFromURL($("dataUrl").value.trim());
+  } catch(error) {
+    setStatus(error.message,"errorbox");
   }
-];
+});
 
-function poidsAdaptatifs(m,c){
-  const w=[...m.poids];
-
-  // Ajustements modestes, propres à chaque discipline.
-  if(c.discipline==="obstacle"){
-    w[3]*=1.12;
-    w[2]*=1.08;
-  }else if(c.discipline==="trot"){
-    w[2]*=1.08;
-    w[3]*=1.06;
-  }else{
-    w[1]*=1.08;
-    w[0]*=1.04;
-  }
-
-  // Longue distance : valorisation modérée
-  // de la régularité et de la fiabilité.
-  if(c.distance>=3000){
-    w[2]*=1.05;
-    w[3]*=1.05;
-  }
-
-  const total=w.reduce((a,b)=>a+b,0);
-  return w.map(x=>x/total);
-}
-
-function scoreCheval(h,w,m){
-  const v=[
-    h.forme,h.aptitude,
-    h.regularite,h.fiabilite
-  ];
-
-  let score=v.reduce(
-    (s,x,i)=>s+x*w[i],0
-  );
-
-  if(m.id==="M5"){
-    const moyenne=v.reduce((a,b)=>a+b,0)/4;
-    const dispersion=Math.sqrt(
-      v.reduce((s,x)=>s+(x-moyenne)**2,0)/4
-    );
-    score-=dispersion*.12;
-  }
-
-  return +score.toFixed(4);
-}
-
-function calculer(c){
-  const actifs=c.chevaux.filter(h=>!h.nonPartant);
-
-  if(actifs.length<2){
-    throw Error("Au moins deux partants actifs requis.");
-  }
-
-  return moteurs.map(m=>{
-    const w=poidsAdaptatifs(m,c);
-
-    const classement=actifs.map(h=>({
-      ...h,
-      score:scoreCheval(h,w,m)
-    })).sort(
-      (a,b)=>b.score-a.score||a.numero-b.numero
-    );
-
-    const premier=classement[0];
-    const second=classement[1];
-    const marge=premier.score-second.score;
-
-    const moyenne=
-      classement.reduce((s,h)=>s+h.score,0)/
-      classement.length;
-
-    const separation=premier.score-moyenne;
-
-    // Qualification heuristique :
-    // score, avance et séparation du peloton.
-    let etoiles=0;
-
-    if(premier.score>=75&&
-       marge>=5&&separation>=8){
-      etoiles=5;
-    }else if(
-      premier.score>=65&&
-      marge>=2&&separation>=4
-    ){
-      etoiles=4;
-    }
-
-    const qualification=
-      etoiles===5?"🌟🌟🌟🌟🌟":
-      etoiles===4?"🌟🌟🌟🌟":
-      "Non qualifiée";
-
-    const pari=etoiles>=4?
-      "Simple placé "+premier.numero:
-      "Aucun pari retenu";
-
-    return {
-      moteur:m.id,
-      icone:m.icone,
-      specialite:m.nom,
-      gagnant:{
-        numero:premier.numero,
-        nom:premier.nom
-      },
-      place:{
-        numero:second.numero,
-        nom:second.nom
-      },
-      ordre:classement.slice(0,5)
-        .map(h=>h.numero),
-      pari,
-      qualification,
-      validation:"Analyse heuristique",
-      score:premier.score,
-      marge:+marge.toFixed(4),
-      separation:+separation.toFixed(4),
-      poids:w.map(x=>+x.toFixed(6))
-    };
-  });
-}
-
-function donneesIdentiques(){
-  if(!courseData)return false;
-
-  return [
-    "date","heure","reunion","course",
-    "hippodrome","discipline","distance","terrain"
-  ].every(k=>
-    String($(k).value)===String(courseData[k])
-  );
-}
-
-function analyser(){
-  try{
-    if(!courseData){
-      throw Error("Importez une course.");
-    }
-
-    if(!donneesIdentiques()){
-      throw Error(
-        "Identification modifiée : réimportez la course."
-      );
-    }
-
-    const resultats=calculer(courseData);
-    const instant=new Date();
-
-    const a={
-      type:"analyse",
-      courseId:identite(courseData),
-      creeLe:instant.toISOString(),
-      heureParis:parisNow(),
-      version:VERSION,
-      donnees:copier(courseData),
-      resultats:copier(resultats)
-    };
-
-    analyseCourante=a;
-    archives.push(copier(a));
-
-    if(!sauvegarder()){
-      archives.pop();
-      throw Error("Analyse non sauvegardée.");
-    }
-
-    afficherMoteurs(
-      resultats,"PROVISOIRE",a.heureParis
-    );
-
-    message(
-      "analyseInfo",
-      "Analyse terminée à "+a.heureParis+
-      "\nM1–M5 ont produit cinq classements indépendants."+
-      "\nLes qualifications restent expérimentales.",
-      "success"
-    );
-
-    mettreAJour();
-    afficherHistorique();
-
-  }catch(e){
-    message(
-      "analyseInfo",
-      "Erreur : "+e.message,
-      "error"
+$("loadGithub").addEventListener("click",async()=>{
+  try {
+    await loadFromURL("./data/courses.json");
+  } catch(error) {
+    setStatus(
+      "Impossible de charger data/courses.json : "+error.message,
+      "errorbox"
     );
   }
-}
+});
 
-function afficherMoteurs(resultats,etat,heure){
-  $("moteursTable").innerHTML=
-    resultats.map(r=>`
-      <tr>
-        <td>
-          <b>${echapper(r.icone)}
-          ${echapper(r.moteur)}</b>
-          <small>${echapper(r.specialite)}</small>
-        </td>
-        <td>
-          ${r.gagnant.numero}
-          ${echapper(r.gagnant.nom)}
-        </td>
-        <td>
-          ${r.place.numero}
-          ${echapper(r.place.nom)}
-        </td>
-        <td>${r.ordre.join("-")}</td>
-        <td>${echapper(r.pari)}</td>
-        <td class="star">
-          ${echapper(r.qualification)}
-        </td>
-        <td>${echapper(etat)}</td>
-        <td>${echapper(heure)}</td>
-      </tr>
-    `).join("");
-}
+/* ==========================
+   ACTIONS D'ANALYSE
+   ========================== */
 
-async function empreinte(obj){
-  if(!globalThis.crypto ||
-     !globalThis.crypto.subtle){
-    throw Error(
-      "SHA-256 indisponible. Ouvrez le site en HTTPS."
+$("raceSelect").addEventListener("change",event=>{
+  selectedRace=races.find(
+    r=>r.id===event.target.value
+  )||null;
+
+  currentAnalysis=null;
+  renderRaceInfo();
+  renderOfficialTable();
+});
+
+$("raceDate").addEventListener("change",renderRaceSelect);
+
+$("qualification").addEventListener("change",()=>{
+  renderStats();
+  currentAnalysis=null;
+  renderOfficialTable();
+});
+
+$("analyze").addEventListener("click",()=>{
+  try {
+    if (!selectedRace) {
+      throw new Error("Sélectionnez une course.");
+    }
+
+    currentAnalysis=analyzeRace(selectedRace);
+
+    audit("ANALYSE_M1_M5",{
+      raceId:selectedRace.id,
+      fingerprint:selectedRace.fingerprint,
+      engines:5,
+      quality:currentAnalysis.quality.stars
+    });
+
+    renderOfficialTable();
+
+    alert(
+      "Analyse M1 à M5 terminée.\n"+
+      "Résultats provisoires, non FIGÉS."
     );
+  } catch(error) {
+    alert(error.message);
   }
+});
 
-  const texte=JSON.stringify(obj);
-  const donnees=new TextEncoder().encode(texte);
-  const buf=await crypto.subtle.digest(
-    "SHA-256",donnees
-  );
+/* ==========================
+   FIGÉS AVANT DÉPART
+   ========================== */
 
-  return Array.from(new Uint8Array(buf))
-    .map(b=>b.toString(16).padStart(2,"0"))
-    .join("");
-}
-
-function contenuFige(f){
-  return {
-    courseId:f.courseId,
-    creeLe:f.creeLe,
-    donnees:f.donnees,
-    resultats:f.resultats,
-    version:f.version
-  };
-}
-
-async function verifierFige(f){
-  if(!f||f.type!=="fige"||
-     typeof f.sha256!=="string"){
-    return false;
-  }
-
-  const hash=await empreinte(contenuFige(f));
-  return hash===f.sha256;
-}
-
-async function figer(){
-  if(operationFige)return;
-
-  operationFige=true;
-  $("figerBtn").disabled=true;
-
-  try{
-    if(!analyseCourante){
-      throw Error("Lancez d'abord une analyse.");
+$("freeze").addEventListener("click",()=>{
+  try {
+    if (!selectedRace || !currentAnalysis) {
+      throw new Error("Analyse préalable obligatoire.");
     }
 
-    if(!donneesIdentiques()){
-      throw Error("Identification modifiée.");
-    }
+    const race=selectedRace;
+    const departure=new Date(race.depart).getTime();
+    const now=Date.now();
 
-    const c=analyseCourante.donnees;
-
-    if(c.source.toUpperCase().includes("EXEMPLE")){
-      throw Error(
-        "FIGÉ interdit pour une source fictive."
-      );
-    }
-
-    const depart=departTimestamp(c.date,c.heure);
-
-    if(Date.now()>=depart){
-      throw Error(
+    if (now>=departure) {
+      throw new Error(
         "Départ atteint : FIGÉ interdit."
       );
     }
 
-    const id=analyseCourante.courseId;
-
-    if(archives.some(
-      x=>x.type==="fige"&&x.courseId===id
-    )){
-      throw Error(
-        "Cette course possède déjà un FIGÉ."
-      );
+    if (
+      currentAnalysis.raceFingerprint!==race.fingerprint ||
+      currentAnalysis.raceId!==race.id
+    ) {
+      throw new Error("Analyse périmée.");
     }
 
-    // Ne pas figer une analyse produite
-    // après le départ.
-    if(Date.parse(analyseCourante.creeLe)>=depart){
-      throw Error(
-        "Analyse réalisée après le départ."
-      );
-    }
-
-    const f={
-      type:"fige",
-      courseId:id,
-      creeLe:new Date().toISOString(),
-      heureParis:parisNow(),
-      version:VERSION,
-      donnees:copier(c),
-      resultats:copier(analyseCourante.resultats)
-    };
-
-    f.sha256=await empreinte(contenuFige(f));
-
-    // Contrôle après opération asynchrone.
-    if(Date.now()>=depart){
-      throw Error(
-        "Départ atteint pendant le FIGÉ."
-      );
-    }
-
-    if(archives.some(
-      x=>x.type==="fige"&&x.courseId===id
-    )){
-      throw Error("FIGÉ déjà présent.");
-    }
-
-    archives.push(f);
-
-    if(!sauvegarder()){
-      archives.pop();
-      throw Error("FIGÉ non sauvegardé.");
-    }
-
-    afficherMoteurs(
-      f.resultats,"🔒 FIGÉ LOCAL",f.heureParis
+    const existing=frozen.some(f=>
+      f.raceId===race.id &&
+      f.raceFingerprint===race.fingerprint
     );
 
-    message(
-      "figeInfo",
-      "FIGÉ local enregistré à "+f.heureParis+
-      "\nEmpreinte SHA-256 : "+f.sha256+
-      "\nExportez les archives pour les conserver."+
-      "\nHorodatage non certifié par un serveur.",
-      "success"
-    );
-
-    mettreAJour();
-    afficherHistorique();
-
-  }catch(e){
-    message(
-      "figeInfo",
-      "Erreur : "+e.message,
-      "error"
-    );
-  }finally{
-    operationFige=false;
-    $("figerBtn").disabled=false;
-  }
-}
-
-async function auditer(){
-  try{
-    if(!courseData){
-      throw Error("Importez la course concernée.");
-    }
-
-    const id=identite(courseData);
-    const f=archives.find(
-      x=>x.type==="fige"&&x.courseId===id
-    );
-
-    if(!f){
-      throw Error(
-        "Aucun FIGÉ pour cette course."
+    if (existing) {
+      throw new Error(
+        "Cette version de la course possède déjà un FIGÉ."
       );
     }
 
-    if(!(await verifierFige(f))){
-      throw Error(
-        "Intégrité du FIGÉ non confirmée."
+    const frozenAt=new Date().toISOString();
+
+    const entries=currentAnalysis.results.map(result=>({
+      raceId:race.id,
+      raceFingerprint:race.fingerprint,
+      raceLabel:
+        race.hippodrome+" "+race.reunion+" "+race.course,
+      depart:race.depart,
+      frozenAt,
+      engine:result.engine,
+      gagnant:result.gagnant,
+      place:result.place,
+      ordre:[...result.ordre],
+      pari:result.pari,
+      quality:currentAnalysis.quality.stars,
+      source:race.source,
+      sourceVerifiee:race.sourceVerifiee,
+      analysisAt:currentAnalysis.generatedAt,
+      recordHash:hashString(JSON.stringify({
+        raceId:race.id,
+        engine:result.engine,
+        ordre:result.ordre,
+        frozenAt
+      }))
+    }));
+
+    const next=[...frozen,...entries];
+
+    if (!saveLocal(STORAGE_FROZEN,next)) {
+      throw new Error(
+        "Sauvegarde impossible : FIGÉ non confirmé."
       );
     }
 
-    const depart=departTimestamp(
-      f.donnees.date,f.donnees.heure
-    );
+    frozen=next;
 
-    if(Date.now()<depart){
-      throw Error(
-        "Le départ n'a pas encore eu lieu."
-      );
-    }
-
-    const source=$("sourceArrivee").value.trim();
-
-    if(!/^https?:\/\/\S+$/i.test(source)){
-      throw Error(
-        "URL de résultat requise."
-      );
-    }
-
-    const chaine=$("arrivee").value.trim();
-
-    if(!/^\d+(\s*-\s*\d+)*$/.test(chaine)){
-      throw Error(
-        "Format attendu : 7-1-6-4-2."
-      );
-    }
-
-    const ordre=chaine.split("-")
-      .map(x=>Number(x.trim()));
-
-    if(new Set(ordre).size!==ordre.length){
-      throw Error(
-        "Numéros répétés dans l'arrivée."
-      );
-    }
-
-    const actifs=new Set(
-      f.donnees.chevaux
-        .filter(h=>!h.nonPartant)
-        .map(h=>h.numero)
-    );
-
-    if(ordre.some(n=>!actifs.has(n))){
-      throw Error(
-        "L'arrivée contient un numéro absent "+
-        "des partants actifs du FIGÉ."
-      );
-    }
-
-    if(archives.some(
-      x=>x.type==="audit"&&x.courseId===id
-    )){
-      throw Error(
-        "Audit déjà enregistré pour cette course."
-      );
-    }
-
-    const resultats=f.resultats.map(r=>{
-      const gagnant=
-        ordre[0]===r.gagnant.numero;
-
-      const top3=
-        ordre.slice(0,3)
-          .includes(r.gagnant.numero);
-
-      const ordreExact=
-        r.ordre.length<=ordre.length&&
-        r.ordre.every(
-          (n,i)=>ordre[i]===n
-        );
-
-      return {
-        moteur:r.moteur,
-        gagnant,
-        top3,
-        ordreExact,
-        pari:r.pari,
-        pariVerifie:false
-      };
+    audit("FIGE_AVANT_DEPART",{
+      raceId:race.id,
+      frozenAt,
+      engines:entries.map(e=>e.engine)
     });
 
-    const audit={
-      type:"audit",
-      courseId:id,
-      creeLe:new Date().toISOString(),
-      heureParis:parisNow(),
-      sourceDeclaree:source,
-      arriveeDeclaree:ordre,
-      statut:"À vérifier indépendamment",
-      empreinteFige:f.sha256,
-      resultats
-    };
+    renderFrozen();
+    renderOfficialTable();
+    renderStats();
 
-    archives.push(audit);
+    alert(
+      "🔒 FIGÉ local enregistré avant départ.\n"+
+      "Heure Paris : "+formatParis(frozenAt)+"\n"+
+      "Exportez le JSON pour conserver une copie."
+    );
+  } catch(error) {
+    alert(error.message);
+  }
+});
 
-    if(!sauvegarder()){
-      archives.pop();
-      throw Error("Audit non sauvegardé.");
+$("export").addEventListener("click",()=>{
+  downloadJSON(
+    "HIPPOFUSION_X1000_FIGES_"+parisDate()+".json",
+    {
+      application:"HIPPOFUSION X1000",
+      version:"4.0",
+      exportedAt:new Date().toISOString(),
+      note:"Archives locales, non certifiées par un tiers.",
+      figes:frozen
     }
+  );
+});
 
-    const lignes=resultats.map(r=>
-      r.moteur+
-      " — Gagnant exact : "+(r.gagnant?"OUI":"NON")+
-      " ; Top 3 : "+(r.top3?"OUI":"NON")+
-      " ; Ordre exact : "+(r.ordreExact?"OUI":"NON")
-    );
+$("exportAudit").addEventListener("click",()=>{
+  downloadJSON(
+    "HIPPOFUSION_X1000_AUDIT_"+parisDate()+".json",
+    {
+      exportedAt:new Date().toISOString(),
+      audit:audits
+    }
+  );
+});
 
-    message(
-      "auditInfo",
-      "Audit enregistré.\n"+
-      lignes.join("\n")+
-      "\nStatut : arrivée déclarée, non vérifiée."+
-      "\nParis placés et gains non certifiés.",
-      "alert"
-    );
-
-    afficherHistorique();
-
-  }catch(e){
-    message(
-      "auditInfo",
-      "Erreur : "+e.message,
-      "error"
-    );
-  }
-}
-
-function afficherHistorique(){
-  const a=[...archives].reverse();
-
-  if(!a.length){
-    $("historique").innerHTML=
-      '<p class="muted">Aucune archive.</p>';
-    mettreAJour();
-    return;
-  }
-
-  $("historique").innerHTML=`
-    <div class="tablewrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Type</th>
-            <th>Course</th>
-            <th>Heure Paris</th>
-            <th>État</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${a.map(x=>`
-            <tr>
-              <td>${echapper(
-                String(x.type||"").toUpperCase()
-              )}</td>
-              <td>${echapper(x.courseId)}</td>
-              <td>${echapper(x.heureParis)}</td>
-              <td>${
-                x.type==="fige"?
-                  "🔒 FIGÉ LOCAL":
-                x.type==="audit"?
-                  "À vérifier":
-                  "Provisoire"
-              }</td>
-            </tr>
-          `).join("")}
-        </tbody>
-      </table>
-    </div>
-  `;
-
-  mettreAJour();
-}
-
-function exporter(){
-  const documentArchive={
-    logiciel:"HIPPOFUSION X1000",
-    version:VERSION,
-    exportLe:new Date().toISOString(),
-    archives:copier(archives)
-  };
-
-  const blob=new Blob(
-    [JSON.stringify(documentArchive,null,2)],
-    {type:"application/json"}
+$("clearLocal").addEventListener("click",()=>{
+  const confirmed=confirm(
+    "Effacer définitivement les FIGÉS et audits "+
+    "enregistrés sur cet appareil ?\n"+
+    "Exportez-les avant de continuer."
   );
 
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement("a");
+  if (!confirmed) return;
 
-  a.href=url;
-  a.download=
-    "HIPPOFUSION_X1000_ARCHIVES_"+
-    dateParis()+".json";
+  localStorage.removeItem(STORAGE_FROZEN);
+  localStorage.removeItem(STORAGE_AUDIT);
 
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
+  frozen=[];
+  audits=[];
 
-  setTimeout(()=>URL.revokeObjectURL(url),3000);
-}
+  renderFrozen();
+  renderAudit();
+  renderOfficialTable();
+  renderStats();
 
-function importerArchives(){
-  $("archiveFile").click();
-}
+  alert("Données locales effacées.");
+});
 
-$("archiveFile").addEventListener(
-  "change",async e=>{
-    const f=e.target.files[0];
-    if(!f)return;
+/* ==========================
+   EXEMPLE DE FORMAT JSON
+   ========================== */
 
-    try{
-      if(f.size>10*1024*1024){
-        throw Error(
-          "Archive trop volumineuse."
-        );
-      }
-
-      const d=JSON.parse(await f.text());
-
-      if(!d||!Array.isArray(d.archives)){
-        throw Error(
-          "Format d'archive invalide."
-        );
-      }
-
-      const autorises=new Set([
-        "analyse","fige","audit"
-      ]);
-
-      for(const x of d.archives){
-        if(!x||!autorises.has(x.type)||
-           typeof x.courseId!=="string"||
-           typeof x.creeLe!=="string"){
-          throw Error(
-            "Entrée d'archive invalide."
-          );
+const example={
+  courses:[
+    {
+      id:"2026-10-21-R1-C1",
+      reunion:"R1",
+      course:"C1",
+      hippodrome:"Hippodrome exemple",
+      depart:"2026-10-21T14:00:00+02:00",
+      discipline:"Galop",
+      distance:1900,
+      terrain:"Souple",
+      source:"Source à renseigner",
+      sourceVerifiee:false,
+      chevaux:[
+        {
+          numero:1,
+          nom:"Cheval exemple A",
+          nonPartant:false,
+          performances:[2,1,4,3],
+          cote:5.2,
+          forme:78,
+          distance:80,
+          terrain:75,
+          parcours:70,
+          regularite:82,
+          fiabilite:79,
+          valeur:76,
+          opposition:74
+        },
+        {
+          numero:2,
+          nom:"Cheval exemple B",
+          nonPartant:false,
+          performances:[3,2,5,1],
+          cote:9.5,
+          forme:72,
+          distance:76,
+          terrain:80,
+          parcours:75,
+          regularite:73,
+          fiabilite:74,
+          valeur:78,
+          opposition:77
         }
-
-        if(x.type==="fige"){
-          if(!(await verifierFige(x))){
-            throw Error(
-              "FIGÉ importé dont l'empreinte "+
-              "ne correspond pas."
-            );
-          }
-        }
-      }
-
-      const cles=new Set(
-        archives.map(x=>
-          [x.type,x.courseId,x.creeLe].join("|")
-        )
-      );
-
-      let ajouts=0;
-
-      for(const x of d.archives){
-        const cle=[
-          x.type,x.courseId,x.creeLe
-        ].join("|");
-
-        if(!cles.has(cle)){
-          archives.push(copier(x));
-          cles.add(cle);
-          ajouts++;
-        }
-      }
-
-      if(!sauvegarder()){
-        throw Error(
-          "Archives non sauvegardées."
-        );
-      }
-
-      afficherHistorique();
-
-      message(
-        "status",
-        ajouts+" archive(s) importée(s). "+
-        "Les horodatages importés ne sont "+
-        "pas certifiés indépendamment.",
-        "success"
-      );
-
-    }catch(err){
-      message(
-        "status",
-        "Erreur d'importation : "+err.message,
-        "error"
-      );
-    }finally{
-      e.target.value="";
+      ]
     }
-  }
-);
+  ]
+};
 
-$("date").value=dateParis();
-mettreAJour();
-afficherHistorique();
+$("jsonExample").textContent=
+  JSON.stringify(example,null,2);
+
+/* ==========================
+   INITIALISATION
+   ========================== */
+
+function updateClock() {
+  $("clock").textContent=
+    "Heure officielle affichée — Europe/Paris : "+
+    nowParis();
+}
+
+function init() {
+  $("raceDate").value=parisDate();
+
+  renderStats();
+  renderFrozen();
+  renderAudit();
+  renderRaceSelect();
+
+  updateClock();
+  setInterval(updateClock,1000);
+
+  audit("APPLICATION_OUVERTE",{
+    version:"4.0",
+    timezone:PARIS_TZ
+  });
+
+  /*
+   Chargement automatique si le fichier existe.
+   L'échec silencieux permet de garder le site utilisable
+   sans fichier de données.
+  */
+  fetch("./data/courses.json",{cache:"no-store"})
+    .then(response=>{
+      if (!response.ok) throw new Error("Fichier absent");
+      return response.json();
+    })
+    .then(payload=>loadPayload(
+      payload,
+      "data/courses.json"
+    ))
+    .catch(()=>{
+      setStatus(
+        "Site prêt. Importez un fichier JSON de courses "+
+        "ou ajoutez data/courses.json sur GitHub."
+      );
+    });
+}
+
+init();
 
 </script>
 </body>
