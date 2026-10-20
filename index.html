@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -570,4 +569,77 @@ function auditer(){
    throw Error("Format attendu : 7-1-6-4-2.");
   const ordre=chaine.split("-").map(x=>+x.trim());
   if(new Set(ordre).size!==ordre.length)
-   throw Error("Numéros répétés dans l'arrivée.
+   throw Error("Numéros répétés dans l'arrivée.");
+  const participants=new Set(f.donnees.chevaux.map(h=>h.numero));
+  if(ordre.some(n=>!participants.has(n)))
+   throw Error("Un numéro n'appartient pas à la course.");
+  if(archives.some(x=>x.type==="audit"&&x.courseId===id))
+   throw Error("Audit déjà enregistré : exportez et examinez les archives.");
+  const resultats=f.resultats.map(r=>{
+   const gagnant=ordre[0]===r.gagnant.numero;
+   const top3=ordre.slice(0,3).includes(r.gagnant.numero);
+   const ordreExact=r.ordre.length<=ordre.length&&
+    r.ordre.every((n,i)=>ordre[i]===n);
+   return {moteur:r.moteur,gagnant,top3,ordreExact,
+    pari:r.pari,
+    // Un Simple placé n'est pas toujours limité au top 3.
+    pariVerifie:false};
+  });
+  const audit={
+   type:"audit",courseId:id,
+   creeLe:new Date().toISOString(),
+   heureParis:parisNow(),
+   sourceDeclaree:source,
+   arriveeDeclaree:ordre,
+   statut:"À vérifier indépendamment",
+   resultats
+  };
+  archives.push(audit);
+  if(!sauvegarder()){
+   archives.pop();throw Error("Audit non sauvegardé.");
+  }
+  message("auditInfo",
+   "Audit comparatif enregistré.\n"+
+   resultats.map(r=>r.moteur+
+    " — 1er exact : "+(r.gagnant?"OUI":"NON")+
+    " ; dans les 3 : "+(r.top3?"OUI":"NON")+
+    " ; ordre exact : "+(r.ordreExact?"OUI":"NON")).join("\n")+
+   "\nStatut : arrivée déclarée, non vérifiée automatiquement."+
+   "\nLes gains et paris placés ne sont pas validés.","alert");
+  afficherHistorique();
+ }catch(e){message("auditInfo","Erreur : "+e.message,"error")}
+}
+function afficherHistorique(){
+ const a=[...archives].reverse();
+ $("historique").innerHTML=a.length?
+  `<div class="tablewrap"><table>
+  <thead><tr><th>Type</th><th>Course</th><th>Heure Paris</th><th>État</th></tr></thead>
+  <tbody>${a.map(x=>`<tr>
+  <td>${echapper(x.type.toUpperCase())}</td>
+  <td>${echapper(x.courseId)}</td>
+  <td>${echapper(x.heureParis)}</td>
+  <td>${x.type==="fige"?"🔒 FIGÉ LOCAL":
+   x.type==="audit"?"À vérifier":"Provisoire"}</td>
+  </tr>`).join("")}</tbody></table></div>`:
+  '<p class="muted">Aucune archive enregistrée.</p>';
+}
+function exporter(){
+ const blob=new Blob([JSON.stringify({
+  logiciel:"HIPPOFUSION X1000",
+  version:VERSION,
+  exportLe:new Date().toISOString(),
+  archives
+ },null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+ a.href=url;
+ a.download="HIPPOFUSION_X1000_ARCHIVES_"+dateParis()+".json";
+ document.body.appendChild(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),3000);
+}
+$("date").value=dateParis();
+mettreAJour();
+afficherHistorique();
+</script>
+</body>
+</html>
