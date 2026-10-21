@@ -1,1 +1,505 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HIPPOFUSION X1000 M1-M5</title>
+<style>
+:root {
+  font-family: system-ui, Arial, sans-serif;
+  color: #eaf2ff;
+  background: #081426;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+header {
+  padding: 28px 15px;
+  text-align: center;
+  background: #112540;
+  border-bottom: 3px solid #16ae90;
+}
+h1 { font-size: clamp(24px, 5vw, 38px); }
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 16px;
+}
+section {
+  background: #152741;
+  border: 1px solid #385475;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 18px 0;
+}
+button, select, input {
+  background: #28466b;
+  color: white;
+  border: 1px solid #6580a2;
+  border-radius: 9px;
+  padding: 12px;
+  margin: 5px;
+  max-width: 100%;
+}
+button { cursor: pointer; }
+button:disabled { opacity: .4; }
+label { display: inline-block; margin: 5px; }
+table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 800px;
+}
+th, td {
+  padding: 11px;
+  border-bottom: 1px solid #425b78;
+  text-align: left;
+}
+th { color: #9adbcf; }
+.scroll { overflow-x: auto; }
+.error { color: #ff929f; }
+.good { color: #86e5ba; }
+.muted { color: #b6c7dc; }
+article { padding: 10px 0; }
+small { line-height: 1.7; }
+</style>
+</head>
+<body>
 
+<header>
+<h1>🇸🇳🧠🔥 HIPPOFUSION X1000</h1>
+<p>INTELLIGENCE HIPPIQUE — M1 À M5</p>
+<p>Collecte · Analyse · Qualification · FIGÉS · Audit</p>
+</header>
+
+<main>
+
+<section>
+<h2>📡 Centre de collecte PMU</h2>
+<p id="status">Chargement des données…</p>
+
+<button id="reload">🔄 Actualiser les données</button>
+<button id="export">📦 Exporter les FIGÉS</button>
+<button id="auditbtn">📋 Exporter l'audit</button>
+
+<p class="muted">
+Source : fichiers JSON du dépôt GitHub.
+La collecte serveur est réalisée séparément.
+</p>
+
+<label>
+<input type="checkbox" id="auto" checked>
+Actualisation toutes les 2 minutes
+</label>
+</section>
+
+<section>
+<h2>🏇 Courses françaises</h2>
+
+<label>Date
+<input type="date" id="date">
+</label>
+
+<label>Réunion
+<input id="reunion" placeholder="R1">
+</label>
+
+<label>Course
+<input id="course" placeholder="C1">
+</label>
+
+<label>Moteur
+<select id="engine">
+<option value="">Tous les moteurs</option>
+<option>M1</option>
+<option>M2</option>
+<option>M3</option>
+<option>M4</option>
+<option>M5</option>
+</select>
+</label>
+
+<label>Statut
+<select id="filter">
+<option value="">Tous les statuts</option>
+<option value="FIGÉ">FIGÉ</option>
+<option value="NON FIGÉ">NON FIGÉ</option>
+</select>
+</label>
+
+<div id="courses"></div>
+</section>
+
+<section>
+<h2>🔒 Archives des FIGÉS</h2>
+<div id="locks"></div>
+</section>
+
+<section>
+<h2>📋 Journal d'audit</h2>
+<div id="audit"></div>
+</section>
+
+<section>
+<h3>⚠️ Règles de sécurité</h3>
+<small>
+Les moteurs M1 à M5 sont expérimentaux.
+Aucune course, performance, cote ou arrivée
+ne doit être inventée.
+
+Les FIGÉS sont uniquement créés côté serveur
+avant le départ de la course.
+
+Les données insuffisantes entraînent
+une abstention.
+
+Aucun pronostic ne garantit un gain.
+</small>
+</section>
+
+</main>
+
+<script>
+"use strict";
+
+const $ = id => document.getElementById(id);
+
+let feed = { courses: [] };
+let locks = [];
+let audits = [];
+
+function safe(value) {
+  return String(value ?? "—").replace(
+    /[&<>"']/g,
+    char => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    })[char]
+  );
+}
+
+async function getJSON(path) {
+  const response = await fetch(
+    path + "?v=" + Date.now(),
+    { cache: "no-store" }
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      path + " : HTTP " + response.status
+    );
+  }
+
+  return response.json();
+}
+
+function dateParis(value) {
+  if (!value) return "—";
+
+  const date = new Date(value);
+  if (isNaN(date.getTime())) return "—";
+
+  return new Intl.DateTimeFormat("fr-FR", {
+    timeZone: "Europe/Paris",
+    dateStyle: "short",
+    timeStyle: "short"
+  }).format(date);
+}
+
+function dayParis(value) {
+  const date = new Date(value);
+  if (isNaN(date.getTime())) return "";
+
+  const parts = new Intl.DateTimeFormat(
+    "en-GB",
+    {
+      timeZone: "Europe/Paris",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit"
+    }
+  ).formatToParts(date);
+
+  const item = type =>
+    parts.find(p => p.type === type)?.value || "";
+
+  return [
+    item("year"),
+    item("month"),
+    item("day")
+  ].join("-");
+}
+
+function officialTable(motors) {
+  const selected = $("engine").value;
+
+  const names = [
+    "M1", "M2", "M3", "M4", "M5"
+  ].filter(name =>
+    !selected || selected === name
+  );
+
+  let html = `
+  <div class="scroll">
+  <table>
+  <thead>
+  <tr>
+  <th>Moteur</th>
+  <th>🥇 Gagnant espéré</th>
+  <th>🥈 Meilleur placé</th>
+  <th>Ordre espéré</th>
+  <th>🎯 Pari retenu</th>
+  <th>Qualification</th>
+  <th>Validation</th>
+  <th>Heure Paris</th>
+  </tr>
+  </thead>
+  <tbody>`;
+
+  for (const name of names) {
+    const motor = motors[name] || {};
+
+    const order = Array.isArray(motor.ordre)
+      ? motor.ordre.join("-")
+      : "—";
+
+    html += `
+    <tr>
+    <td>${safe(name)}</td>
+    <td>${safe(motor.gagnant)}</td>
+    <td>${safe(motor.place)}</td>
+    <td>${safe(order)}</td>
+    <td>${safe(motor.pari || "Aucun")}</td>
+    <td>${safe(motor.qualification || "Non validée")}</td>
+    <td>${safe(motor.statut || "Inconnu")}</td>
+    <td>${safe(motor.fige_at || "—")}</td>
+    </tr>`;
+  }
+
+  html += "</tbody></table></div>";
+  return html;
+}
+
+function render() {
+  const courses = Array.isArray(feed.courses)
+    ? feed.courses
+    : [];
+
+  const filtered = courses.filter(course => {
+    const dateOK =
+      !$("date").value ||
+      dayParis(course.depart) === $("date").value;
+
+    const reunionOK =
+      !$("reunion").value ||
+      String(course.reunion || "")
+        .toLowerCase()
+        .includes($("reunion").value.toLowerCase());
+
+    const courseOK =
+      !$("course").value ||
+      String(course.course || "")
+        .toLowerCase()
+        .includes($("course").value.toLowerCase());
+
+    const locked = locks.some(
+      item => item.id === course.id
+    );
+
+    const statusOK =
+      !$("filter").value ||
+      ($("filter").value === "FIGÉ") === locked;
+
+    return dateOK && reunionOK &&
+      courseOK && statusOK;
+  });
+
+  if (!filtered.length) {
+    $("courses").innerHTML =
+      "<p>Aucune course correspondant aux filtres.</p>";
+  } else {
+    $("courses").innerHTML = filtered.map(course => {
+      const history = locks
+        .filter(item => item.id === course.id)
+        .sort((a, b) =>
+          Number(b.version) - Number(a.version)
+        );
+
+      const latest = history[0];
+
+      const runners = Array.isArray(course.partants)
+        ? course.partants
+        : [];
+
+      const np = runners.filter(
+        runner => runner.non_partant
+      ).length;
+
+      let prediction = `
+        <p class="muted">
+        Aucun FIGÉ disponible.
+        Une analyse peut être refusée si
+        les données sont insuffisantes.
+        </p>`;
+
+      if (latest) {
+        const motors = {};
+
+        for (const [name, value] of Object.entries(
+          latest.moteurs || {}
+        )) {
+          motors[name] = {
+            ...value,
+            statut: "🔒 V" + latest.version,
+            fige_at: dateParis(latest.fige_at)
+          };
+        }
+
+        prediction = officialTable(motors);
+      }
+
+      return `
+      <article>
+      <h3>
+      ${safe(course.reunion)}
+      ${safe(course.course)}
+      — ${safe(course.hippodrome)}
+      </h3>
+
+      <p>
+      ${safe(dateParis(course.depart))}
+      · ${safe(course.discipline)}
+      · ${safe(course.distance)} m
+      · ${runners.length} engagés
+      · ${np} NP
+      </p>
+
+      <p class="muted">
+      Source : ${safe(course.source || feed.source)}
+      </p>
+
+      <p>
+      ${latest
+        ? "🔒 FIGÉ V" + safe(latest.version)
+          + " — " + safe(dateParis(latest.fige_at))
+        : "NON FIGÉ"}
+      </p>
+
+      ${prediction}
+      </article>
+      <hr>`;
+    }).join("");
+  }
+
+  $("locks").textContent = locks.length
+    ? locks.length + " archive(s) FIGÉES."
+    : "Aucun FIGÉ archivé.";
+
+  $("audit").innerHTML = audits
+    .slice(-20)
+    .reverse()
+    .map(item => `
+      <p><small>
+      ${safe(item.at)}
+      — ${safe(item.event)}
+      : ${safe(item.detail)}
+      </small></p>
+    `).join("") || "Aucun audit disponible.";
+}
+
+async function refresh() {
+  const errors = [];
+
+  try {
+    feed = await getJSON("data/courses.json");
+
+    if (!Array.isArray(feed.courses)) {
+      throw new Error(
+        "Format invalide : courses doit être une liste"
+      );
+    }
+  } catch (error) {
+    errors.push(error.message);
+    feed = { courses: [] };
+  }
+
+  try {
+    locks = await getJSON("data/figes.json");
+    if (!Array.isArray(locks)) {
+      throw new Error("Format FIGÉS invalide");
+    }
+  } catch (error) {
+    errors.push(error.message);
+    locks = [];
+  }
+
+  try {
+    audits = await getJSON("data/audit.json");
+    if (!Array.isArray(audits)) {
+      throw new Error("Format audit invalide");
+    }
+  } catch (error) {
+    errors.push(error.message);
+    audits = [];
+  }
+
+  if (errors.length) {
+    $("status").innerHTML =
+      '<span class="error">' +
+      safe(errors.join(" | ")) +
+      "</span>";
+  } else {
+    $("status").innerHTML =
+      '<span class="good">Fichiers accessibles</span>' +
+      "<p>Courses : " + feed.courses.length + "</p>" +
+      "<p>Dernière collecte : " +
+      safe(feed.updated_at || "Jamais") + "</p>" +
+      "<p>État : " +
+      safe(feed.status || "Non renseigné") + "</p>";
+  }
+
+  render();
+}
+
+function download(name, data) {
+  const blob = new Blob(
+    [JSON.stringify(data, null, 2)],
+    { type: "application/json" }
+  );
+
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = name;
+  link.click();
+
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+$("reload").onclick = refresh;
+
+$("export").onclick = () =>
+  download("figes.json", locks);
+
+$("auditbtn").onclick = () =>
+  download("audit.json", audits);
+
+for (const id of [
+  "date", "reunion", "course", "engine", "filter"
+]) {
+  $(id).addEventListener("input", render);
+}
+
+refresh();
+
+setInterval(() => {
+  if ($("auto").checked) {
+    refresh();
+  }
+}, 120000);
+</script>
+
+</body>
+</html>
